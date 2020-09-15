@@ -1,0 +1,47 @@
+{
+  "name": "pizza-shop",
+  "version": "1.0.0",
+  "description": "A JavaScript full stack application for a pizza shop (School project)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev:start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nowtryz/PizzaShop.git"
+  },
+  "keywords": [
+    "Pizza",
+    "FullStack",
+    "Polytech",
+    "Annecy",
+    "Polytech"
+  ],
+  "contributors": [
+    {
+      "name": "Damien Djomby (Nowtryz)",
+      "url": "https://nowtryz.net"
+    },
+    {
+      "name": "Adrien Simard (adrien-simard)"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nowtryz/PizzaShop/issues"
+  },
+  "homepage": "https://github.com/nowtryz/PizzaShop#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chalk": "^4.1.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.5",
+    "morgan": "^1.10.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
