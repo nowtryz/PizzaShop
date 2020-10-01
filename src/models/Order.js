@@ -1,7 +1,7 @@
 import {model, Schema} from "mongoose";
 
 export default model("Order", new Schema({
-    products: [Schema.ObjectId],
+    products: { type: Schema.Types.ObjectId, ref: 'SimpleProduct' },
     taken: Date,
     estimation: Date,
     prepared: {
