@@ -5,6 +5,7 @@ export default mongoose.model('Client', new Schema({
     surname : Number,
     email : String,
     pwd : String,
-    loyaltyPoint :Number,
-    listOfOrder : [Order]
+    loyaltyPoint : Number,
+    orders : [{ type: Schema.Types.ObjectId, ref: 'Order' }],
+    bookings : [{type: Schema.Types.ObjectId, ref : 'Bookings'}]
         }));

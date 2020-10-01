@@ -6,7 +6,7 @@ import SimpleProduct from './SimpleProduct';
 
 
 export default Product.discriminator('DailyMenu', new Schema({
-    starter : SimpleProduct,
-    pizza : Pizza,
-    dessert : SimpleProduct,
+    starter : { type: Schema.Types.ObjectId, ref: 'SimpleProduct' },
+    pizza : { type: Schema.Types.ObjectId, ref: 'Pizza' },
+    dessert : { type: Schema.Types.ObjectId, ref: 'SimpleProduct' },
 }));
