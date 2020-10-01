@@ -1,4 +1,5 @@
 import {format, loggers, transports} from "winston";
+import path from 'path'
 
 loggers.add('infoLogger', {
     level: 'info',
