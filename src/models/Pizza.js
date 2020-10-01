@@ -4,7 +4,7 @@ import Product from './Product';
 
 
 export default Product.discriminator('Pizza', new Schema({
-    ingrédient : [String],
-    allergene : [String],
+    ingredients: [String],
+    allergen: [String],
 }));
 
