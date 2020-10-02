@@ -1,17 +1,15 @@
-import {format, loggers, transports} from "winston";
+import {format, transports, createLogger} from "winston";
 import path from 'path'
 
-loggers.add('infoLogger', {
+export default createLogger({
     level: 'info',
-    transports: [new transports.File({ filename: path.join(__dirname, 'logs/info.log')})],
-    format: format.printf((info) => `${new Date(Date.now()).toUTCString()} | ${info.level.toUpperCase()}  | ${info.message}`
-    )
-})
-
-loggers.add('errorLogger', {
-    level: 'error',
-    transports: [new transports.File({ filename: path.join(__dirname, 'logs/error.log')})],
-    format: format.printf((info) => `${new Date(Date.now()).toUTCString()} | ${info.level.toUpperCase()}  | ${info.message}`)
-})
-
-export default loggers.get('infoLogger')
+    defaultMeta: { service: 'user-service' },
+    format: format.printf(({level, message}) =>
+        `${new Date(Date.now()).toUTCString()} | ${level.toUpperCase()}  | ${message}`
+    ),
+    transports: [
+        new transports.File({ filename: path.join(__dirname, 'logs/error.log'), level: 'error'}),
+        new transports.File({ filename: path.join(__dirname, 'logs/info.log')}),
+        new transports.Console(),
+    ],
+});
