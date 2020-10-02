@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "A JavaScript full stack application for a pizza shop (School project)",
   "homepage": "https://github.com/nowtryz/PizzaShop#readme",
-  "keywords": ["Pizza", "FullStack", "Polytech", "Annecy", "Polytech"],
+  "keywords": [
+    "Pizza",
+    "FullStack",
+    "Polytech",
+    "Annecy",
+    "Polytech"
+  ],
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
@@ -32,10 +38,15 @@
   ],
   "babel": {
     "presets": [
-      ["@babel/preset-env", {
-        "modules": "commonjs",
-        "targets": {"node": "current"}
-      }]
+      [
+        "@babel/preset-env",
+        {
+          "modules": "commonjs",
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
     ]
   },
   "jest": {
