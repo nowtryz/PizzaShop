@@ -1,5 +1,5 @@
 import {afterAll, afterEach, beforeAll, beforeEach, describe, it} from "@jest/globals";
-import {closeConnection, database} from "../../../src/database";
+import {closeConnection, initDatabase} from "../../../src/initDatabase";
 import DailyMenu from "../../../src/models/DailyMenu";
 import SimpleProduct from "../../../src/models/SimpleProduct";
 import Pizza from "../../../src/models/Pizza";
@@ -46,7 +46,7 @@ const createProducts = async () => {
 }
 
 export default () => describe('DailyMenu Model tests', ()=> {
-    beforeAll(() => database({serverSelectionTimeoutMS : 5000}))
+    beforeAll(() => initDatabase({serverSelectionTimeoutMS : 5000}))
     afterAll(closeConnection)
     beforeEach(async () => {
         await Promise.all([

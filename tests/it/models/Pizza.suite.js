@@ -1,11 +1,11 @@
-import {closeConnection, database} from '../../../src/database'
+import {closeConnection, initDatabase} from '../../../src/initDatabase'
 import {afterAll, afterEach, beforeAll, describe, it} from "@jest/globals"
 import logger from "../../../src/logger"
 import Pizza from "../../../src/models/Pizza";
 
 export default () => describe('Pizza Model tests', ()=> {
     beforeAll(async () => {
-        await database({serverSelectionTimeoutMS: 5000})
+        await initDatabase({serverSelectionTimeoutMS: 5000})
         await Pizza.deleteMany({})
     })
 

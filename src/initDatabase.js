@@ -3,7 +3,7 @@ import {db} from "../config.json";
 import logger from "./logger";
 import chalk from "chalk";
 
-export const database = async (options={}) => {
+export const initDatabase = async (options={}) => {
     logger.info(chalk.green("Connecting to database"))
 
     await mongoose.connect(
@@ -16,7 +16,7 @@ export const database = async (options={}) => {
 
 export const initDatabaseNoError =  async (options={}) => {
     try {
-        await database(options)
+        await initDatabase(options)
     }
     catch (error) {
         console.error(chalk.red(`Connection error: ${error.stack}`))

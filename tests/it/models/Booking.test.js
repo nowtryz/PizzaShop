@@ -1,10 +1,10 @@
 import {afterAll, afterEach, beforeAll, describe, it} from "@jest/globals";
-import {closeConnection, database} from "../../../src/database";
+import {closeConnection, initDatabase} from "../../../src/initDatabase";
 import Booking from "../../../src/models/Booking";
 
 describe('Booking Model tests', ()=> {
     beforeAll(async () => {
-        await database({serverSelectionTimeoutMS : 5000})
+        await initDatabase({serverSelectionTimeoutMS : 5000})
         await Booking.deleteMany({})
     })
 

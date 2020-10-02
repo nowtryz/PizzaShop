@@ -2,10 +2,11 @@
   "name": "pizza-shop",
   "version": "1.0.0",
   "description": "A JavaScript full stack application for a pizza shop (School project)",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev:start": "nodemon — exec babel-node src/server.js",
+    "start": "node lib/index.js",
+    "build": "babel src -d lib",
+    "dev:start": "nodemon --exec babel-node src/index.js",
     "test": "jest ./tests",
     "test:watch": "jest --watchAll",
     "test:integretion": "jest ./tests/it"
@@ -45,6 +46,7 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.11.6",
     "@babel/core": "^7.11.6",
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.5",

@@ -1,11 +1,11 @@
 import {afterAll, afterEach, beforeAll, beforeEach, describe, it} from "@jest/globals";
-import {closeConnection, database} from "../../../src/database";
+import {closeConnection, initDatabase} from "../../../src/initDatabase";
 import Category from "../../../src/models/Category";
 import {Types} from "mongoose";
 import Pizza from "../../../src/models/Pizza";
 
 export default () => describe('Pizza Model tests', ()=> {
-    beforeAll( () => database({serverSelectionTimeoutMS : 5000}))
+    beforeAll( () => initDatabase({serverSelectionTimeoutMS : 5000}))
 
     beforeEach(() => Promise.all([
         Pizza.deleteMany({}),

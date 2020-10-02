@@ -3,5 +3,8 @@
     "ip": "localhost",
     "port": "27017",
     "name": "pizza"
+  },
+  "httpServer": {
+    "port": 3000
   }
 }
