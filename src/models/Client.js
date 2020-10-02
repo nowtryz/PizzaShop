@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose'
+import mongoose, { Schema } from 'mongoose'
 
 export default mongoose.model('Client', new Schema({
     name : String,
@@ -8,4 +8,4 @@ export default mongoose.model('Client', new Schema({
     loyaltyPoint : Number,
     orders : [{ type: Schema.Types.ObjectId, ref: 'Order' }],
     bookings : [{type: Schema.Types.ObjectId, ref : 'Bookings'}],
-        }));
+}));
