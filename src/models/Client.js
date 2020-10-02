@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose'
 
 export default mongoose.model('Client', new Schema({
     name : String,
-    surname : Number,
+    surname : String,
     email : String,
     pwd : String,
     loyaltyPoint : Number,
