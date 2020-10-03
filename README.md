@@ -116,16 +116,13 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/nowtryz/PizzaShop.svg?style=flat-square
+[contributors-shield]: https://img.shields.io/github/contributors/nowtryz/PizzaShop.svg
 [contributors-url]: https://github.com/nowtryz/PizzaShop/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/nowtryz/PizzaShop.svg?style=flat-square
+[forks-shield]: https://img.shields.io/github/forks/nowtryz/PizzaShop.svg
 [forks-url]: https://github.com/nowtryz/PizzaShop/network/members
-[stars-shield]: https://img.shields.io/github/stars/nowtryz/PizzaShop.svg?style=flat-square
+[stars-shield]: https://img.shields.io/github/stars/nowtryz/PizzaShop.svg
 [stars-url]: https://github.com/nowtryz/PizzaShop/stargazers
-[issues-shield]: https://img.shields.io/github/issues/nowtryz/PizzaShop.svg?style=flat-square
+[issues-shield]: https://img.shields.io/github/issues/nowtryz/PizzaShop.svg
 [issues-url]: https://github.com/nowtryz/PizzaShop/issues
-[license-shield]: https://img.shields.io/github/license/nowtryz/PizzaShop.svg?style=flat-square
+[license-shield]: https://img.shields.io/github/license/nowtryz/PizzaShop.svg
 [license-url]: https://github.com/nowtryz/PizzaShop/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/nowtryz
-[product-screenshot]: images/screenshot.png
