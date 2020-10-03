@@ -1,5 +1,5 @@
 import {afterAll, afterEach, beforeAll, describe, it} from "@jest/globals";
-import {closeConnection, initDatabase} from "../../../src/initDatabase";
+import {closeConnection, initDatabase} from "../../../src/loaders/database";
 import SimpleProduct from "../../../src/models/SimpleProduct";
 
 describe('SimpleProduct Model tests', ()=> {

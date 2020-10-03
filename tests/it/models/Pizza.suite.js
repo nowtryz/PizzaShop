@@ -1,4 +1,4 @@
-import {closeConnection, initDatabase} from '../../../src/initDatabase'
+import {closeConnection, initDatabase} from '../../../src/loaders/database'
 import {afterAll, afterEach, beforeAll, describe, it} from "@jest/globals"
 import Pizza from "../../../src/models/Pizza";
 

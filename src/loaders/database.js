@@ -1,16 +1,11 @@
 import mongoose from "mongoose";
-import {db} from "../config.json";
-import logger from "./logger";
 import chalk from "chalk";
+import logger from "./logger";
+import {db} from "./config";
 
 export const initDatabase = async (options={}) => {
     logger.info(chalk.green("Connecting to database"))
-
-    await mongoose.connect(
-        `mongodb://${db.ip}:${db.port}/${db.name}`,
-        {useNewUrlParser: true, useUnifiedTopology : true, ...options}
-    )
-
+    await mongoose.connect(db.uri, {useNewUrlParser: true, useUnifiedTopology : true, ...options})
     logger.info(chalk.green("Connected to database"))
 }
 

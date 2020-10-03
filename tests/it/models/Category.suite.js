@@ -1,5 +1,5 @@
-import {afterAll, afterEach, beforeAll, beforeEach, describe, it} from "@jest/globals";
-import {closeConnection, initDatabase} from "../../../src/initDatabase";
+import {afterAll, beforeAll, beforeEach, describe, it} from "@jest/globals";
+import {closeConnection, initDatabase} from "../../../src/loaders/database";
 import Category from "../../../src/models/Category";
 import {Types} from "mongoose";
 import Pizza from "../../../src/models/Pizza";

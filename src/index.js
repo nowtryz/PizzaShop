@@ -1,8 +1,8 @@
-import { initDatabaseNoError } from "./initDatabase";
-import {httpServer} from "../config.json";
-import logger from "./logger";
+import { initDatabaseNoError } from "./loaders/database";
+import {httpServer} from "./loaders/config";
+import logger from "./loaders/logger";
 import chalk from "chalk";
-import app from "./server";
+import app from "./loaders/server";
 
 initDatabaseNoError()
 .then(() => {

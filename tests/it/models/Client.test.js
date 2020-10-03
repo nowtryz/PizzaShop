@@ -1,5 +1,5 @@
-import {afterAll, afterEach, beforeAll, beforeEach, describe, it} from "@jest/globals";
-import {closeConnection, initDatabase} from "../../../src/initDatabase";
+import {afterAll, beforeAll, beforeEach, describe, it} from "@jest/globals";
+import {closeConnection, initDatabase} from "../../../src/loaders/database";
 import Client from '../../../src/models/Client'
 
 const clientObj = {
@@ -15,15 +15,12 @@ describe('Client Model tests', ()=> {
     afterAll(closeConnection)
 
     it('Create a Client', async () => {
-        console.log("create")
         await new Client(clientObj).save()
 
         expect(await Client.countDocuments()).toEqual(1)
-        console.log("created")
     })
 
     it('Ensure fetched Client is equal', async (done)  => {
-        console.log("fetch")
         const expected = Client(clientObj)
 
         await expected.save()
@@ -37,8 +34,6 @@ describe('Client Model tests', ()=> {
         expect(result.loyaltyPoint).toEqual(expected.loyaltyPoint)
         expect(...result.orders).toBe(...expected.orders)
         expect(...result.bookings).toBe(...expected.bookings)
-        console.log("fetched")
-
         done()
     }, 6000)
 })

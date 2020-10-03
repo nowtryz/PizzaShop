@@ -8,8 +8,8 @@ export default createLogger({
         `${new Date(Date.now()).toUTCString()} | ${level.toUpperCase()}  | ${message}`
     ),
     transports: [
-        new transports.File({ filename: path.join(__dirname, 'logs/error.log'), level: 'error'}),
-        new transports.File({ filename: path.join(__dirname, 'logs/info.log')}),
+        new transports.File({ filename: path.join(process.cwd(), 'logs/error.log'), level: 'error'}),
+        new transports.File({ filename: path.join(process.cwd(), 'logs/info.log')}),
         new transports.Console(),
     ],
 });

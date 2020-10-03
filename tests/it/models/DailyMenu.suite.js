@@ -1,5 +1,5 @@
 import {afterAll, beforeAll, beforeEach, describe, it} from "@jest/globals";
-import {closeConnection, initDatabase} from "../../../src/initDatabase";
+import {closeConnection, initDatabase} from "../../../src/loaders/database";
 import DailyMenu from "../../../src/models/DailyMenu";
 import SimpleProduct from "../../../src/models/SimpleProduct";
 import Pizza from "../../../src/models/Pizza";
@@ -64,7 +64,7 @@ export default () => describe('DailyMenu Model tests', ()=> {
     // TODO test starter is not a started ans dessert is not a dessert
 
     it('Ensure fetched DailyMenu is equal', async (done)  => {
-        const [expected, starter, dessert, pizza] = await createProducts()
+        const [expected] = await createProducts()
         const result = await DailyMenu
             .findById(expected._id)
             .lean(true)

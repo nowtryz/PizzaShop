@@ -1,6 +1,7 @@
 {
   "name": "pizza-shop",
   "version": "1.0.0",
+  "license": "MIT",
   "description": "A JavaScript full stack application for a pizza shop (School project)",
   "homepage": "https://github.com/nowtryz/PizzaShop#readme",
   "keywords": [
@@ -10,12 +11,12 @@
     "Annecy",
     "Polytech"
   ],
-  "license": "MIT",
   "main": "src/index.js",
   "scripts": {
-    "start": "node lib/index.js",
-    "build": "babel src -d lib",
-    "dev:start": "nodemon --exec babel-node src/index.js",
+    "install": "node ./bin/copy-env.js",
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "dev:start": "nodemon --exec ts-node src/index.js",
     "test": "jest ./tests",
     "test:watch": "jest --watchAll",
     "test:integretion": "jest ./tests/it"
@@ -38,6 +39,7 @@
   ],
   "babel": {
     "presets": [
+      "@babel/preset-typescript",
       [
         "@babel/preset-env",
         {
@@ -50,24 +52,25 @@
     ]
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "preset": "ts-jest/presets/js-with-ts"
   },
   "dependencies": {
-    "@jest/globals": "^26.4.2",
     "body-parser": "^1.19.0",
     "chalk": "^4.1.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.5",
     "morgan": "^1.10.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.11.6",
-    "@babel/core": "^7.11.6",
-    "@babel/node": "^7.10.5",
-    "@babel/preset-env": "^7.11.5",
-    "@jest/test-sequencer": "^26.4.2",
-    "babel-jest": "^26.3.0",
-    "jest": "^26.4.2"
+    "@jest/globals": "^26.4.2",
+    "@types/jest": "^26.0.14",
+    "jest": "^26.4.2",
+    "nodemon": "^2.0.4",
+    "ts-jest": "^26.4.1",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
   }
 }
