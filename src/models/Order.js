@@ -1,7 +1,8 @@
 import {model, Schema} from "mongoose";
+import {ProductSchema} from "./Product";
 
 export default model("Order", new Schema({
-    products: { type: Schema.Types.ObjectId, ref: 'SimpleProduct' },
+    products: [ProductSchema],
     taken: Date,
     estimation: Date,
     prepared: {

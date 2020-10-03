@@ -1,6 +1,5 @@
 import {closeConnection, initDatabase} from '../../../src/initDatabase'
 import {afterAll, afterEach, beforeAll, describe, it} from "@jest/globals"
-import logger from "../../../src/logger"
 import Pizza from "../../../src/models/Pizza";
 
 export default () => describe('Pizza Model tests', ()=> {
@@ -41,10 +40,6 @@ export default () => describe('Pizza Model tests', ()=> {
         expect(result.price).toBe(expected.price)
         done()
     }, 6000)
-})
-
-describe('Category Model tests', ()=> {
-
 })
 
 

@@ -1,4 +1,4 @@
-import {afterAll, afterEach, beforeAll, describe, it} from "@jest/globals";
+import {afterAll, afterEach, beforeAll, beforeEach, describe, it} from "@jest/globals";
 import {closeConnection, initDatabase} from "../../../src/initDatabase";
 import Client from '../../../src/models/Client'
 
@@ -9,22 +9,21 @@ const clientObj = {
     pwd: "code"
 }
 
-describe('Booking Model tests', ()=> {
-    beforeAll(async () => {
-        await initDatabase({serverSelectionTimeoutMS : 5000})
-        await Client.deleteMany({})
-    })
-
-    afterEach(() => Client.deleteMany({}))
+describe('Client Model tests', ()=> {
+    beforeAll( () => initDatabase({serverSelectionTimeoutMS : 5000}))
+    beforeEach(() => Client.deleteMany({}))
     afterAll(closeConnection)
 
     it('Create a Client', async () => {
+        console.log("create")
         await new Client(clientObj).save()
 
         expect(await Client.countDocuments()).toEqual(1)
+        console.log("created")
     })
 
     it('Ensure fetched Client is equal', async (done)  => {
+        console.log("fetch")
         const expected = Client(clientObj)
 
         await expected.save()
@@ -38,6 +37,7 @@ describe('Booking Model tests', ()=> {
         expect(result.loyaltyPoint).toEqual(expected.loyaltyPoint)
         expect(...result.orders).toBe(...expected.orders)
         expect(...result.bookings).toBe(...expected.bookings)
+        console.log("fetched")
 
         done()
     }, 6000)

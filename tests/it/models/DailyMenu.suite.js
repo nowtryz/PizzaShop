@@ -1,4 +1,4 @@
-import {afterAll, afterEach, beforeAll, beforeEach, describe, it} from "@jest/globals";
+import {afterAll, beforeAll, beforeEach, describe, it} from "@jest/globals";
 import {closeConnection, initDatabase} from "../../../src/initDatabase";
 import DailyMenu from "../../../src/models/DailyMenu";
 import SimpleProduct from "../../../src/models/SimpleProduct";
