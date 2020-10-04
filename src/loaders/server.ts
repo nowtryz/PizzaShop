@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import morgan from "morgan";
 import apiRouter from "../routes";
 import logger from "./logger";
-import {StatusCodes} from "http-status-codes/build/es";
+import {StatusCodes} from "http-status-codes/build/cjs";
 
 export default express()
 

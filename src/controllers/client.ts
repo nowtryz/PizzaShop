@@ -1,3 +1,4 @@
+import {StatusCodes} from "http-status-codes/build/cjs";
 import {RequestHandler} from "express"
 import Client from '../models/Client'
 import Booking from "../models/Booking"
@@ -7,7 +8,6 @@ import {
     Order as IOrder,
     Booking as IBooking,
 } from "../models/types"
-import {StatusCodes} from "http-status-codes/build/es";
 
 export const createClient : RequestHandler<{}, IClient, IClient, null> = async (req,res) => {
     const newClient = new Client(req.body)
@@ -22,7 +22,7 @@ export const readClients : RequestHandler<{}, Array<IClient>, null> = async (req
     res.status(StatusCodes.OK).json(clients)
 }
 
-export const readClient : RequestHandler<{id:string}, IClient, null> = async (req,res) => {
+export const readClient : RequestHandler<{id:string}, IClient | null, null> = async (req,res) => {
     const client = await Client.findById(req.params.id)
     res.status(StatusCodes.OK).json(client)
 }
