@@ -1,6 +1,7 @@
 import {afterAll, afterEach, beforeAll, describe, it} from "@jest/globals";
 import {closeConnection, initDatabase} from "../../../src/loaders/database";
 import Booking from "../../../src/models/Booking";
+import {Types} from "mongoose";
 
 describe('Booking Model tests', ()=> {
     beforeAll(async () => {
@@ -15,6 +16,7 @@ describe('Booking Model tests', ()=> {
         await new Booking({
             date: Date.now(),
             peopleCount: 7,
+            client: Types.ObjectId(),
         }).save()
 
         expect(await Booking.countDocuments()).toEqual(1)
@@ -26,6 +28,7 @@ describe('Booking Model tests', ()=> {
         const expected = Booking({
             date: Date.now(),
             peopleCount: 7,
+            client: Types.ObjectId(),
         })
 
         await expected.save()

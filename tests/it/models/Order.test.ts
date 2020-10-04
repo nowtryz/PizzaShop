@@ -2,6 +2,7 @@ import {afterAll, afterEach, beforeAll, describe, it} from "@jest/globals";
 import {closeConnection, initDatabase} from "../../../src/loaders/database";
 import Order from "../../../src/models/Order";
 import Pizza from "../../../src/models/Pizza";
+import {Types} from "mongoose";
 
 describe('Order Model tests', ()=> {
     beforeAll(async () => {
@@ -23,7 +24,8 @@ describe('Order Model tests', ()=> {
                 })
             ],
             taken: Date.now(),
-            estimation: new Date(Date.now() + 2*60*60*1000), // in 2 hours
+            estimation: Date.now() + 2*60*60*1000, // in 2 hours
+            client: new Types.ObjectId()
         }).save()
 
         expect(await Order.countDocuments()).toEqual(1)
@@ -34,7 +36,9 @@ describe('Order Model tests', ()=> {
     it('Ensure fetched Order is equal', async (done)  => {
         const expected = Order({
             date: Date.now(),
+            estimation: Date.now() + 2*60*60*1000,
             peopleCount: 7,
+            client: Types.ObjectId()
         })
 
         await expected.save()
