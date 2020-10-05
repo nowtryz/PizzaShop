@@ -11,6 +11,14 @@ import {
 
 export const createClient : RequestHandler<{}, IClient, IClient, null> = async (req,res) => {
     const newClient = new Client(req.body)
+
+    try {
+        await newClient.validate()
+    } catch (error) {
+        res.status(StatusCodes.BAD_REQUEST).json(error)
+        return
+    }
+
     await newClient.save()
     res.status(StatusCodes.CREATED).json(newClient)
 
@@ -28,15 +36,25 @@ export const readClient : RequestHandler<{id:string}, IClient | null, null> = as
 }
 
 export const editClient : RequestHandler<{id:string}, IClient, IClient> = async (req,res)=> {
+    const _id = req.params.id
+    const client = new Client({...req.body, _id})
+
+    try {
+        await client.validate()
+    } catch (error) {
+        res.status(StatusCodes.BAD_REQUEST).json(error)
+        return
+    }
+
     // @ts-ignore
-    const newClient = await Client.findOneAndReplace({_id: req.params.id}, req.body)
-    res.status(StatusCodes.OK).json(newClient)
+    await Client.findOneAndReplace({_id}, client)
+    res.status(StatusCodes.OK).json(client)
 
 }
 
 export const deleteClient : RequestHandler<{id:string}, null, null> = async (req,res)=>{
     await Client.findByIdAndDelete(req.params.id)
-    res.status(StatusCodes.NO_CONTENT)
+    res.status(StatusCodes.NO_CONTENT).end()
 }
 
 export const readClientOrders : RequestHandler<{id:string}, Array<IOrder>, null> = async (req,res)=>{

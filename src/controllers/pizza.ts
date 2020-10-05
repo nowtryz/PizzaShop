@@ -3,8 +3,17 @@ import {RequestHandler} from "express";
 import Pizza from '../models/Pizza'
 import {Pizza as IPizza} from "../models/types";
 
-export const createPizza : RequestHandler<{}, IPizza, IPizza, null> = async (req, res) => {
+export const createPizza : RequestHandler<{}, IPizza, IPizza> = async (req, res) => {
     const pizza = new Pizza(req.body)
+
+    try {
+        await pizza.validate()
+    } catch (error) {
+        res.status(StatusCodes.BAD_REQUEST).json(error)
+        return
+    }
+
+    await pizza.save()
     res.status(StatusCodes.CREATED).json(pizza)
 }
 
@@ -18,13 +27,23 @@ export const readPizza : RequestHandler<{id: string}, IPizza | null, null> = asy
     res.status(StatusCodes.OK).json(pizza)
 }
 
-export const editPizza : RequestHandler<{id: string}, IPizza, null> = async (req, res) => {
+export const editPizza : RequestHandler<{id: string}, IPizza, IPizza> = async (req, res) => {
+    const _id = req.params.id
+    const pizza = new Pizza({...req.body, _id,})
+
+    try {
+        await pizza.validate()
+    } catch (error) {
+        res.status(StatusCodes.BAD_REQUEST).json(error)
+        return
+    }
+
     // @ts-ignore
-    const newPizza = await Pizza.findOneAndReplace({_id: req.params.id}, req.body)
-    res.status(StatusCodes.OK).json(newPizza)
+    await Pizza.replaceOne({_id}, pizza)
+    res.status(StatusCodes.OK).json(pizza)
 }
 
 export const deletePizza : RequestHandler<{id: string}, null, null> = async (req, res) => {
     Pizza.findByIdAndDelete(req.params.id)
-    res.status(StatusCodes.NO_CONTENT)
+    res.status(StatusCodes.NO_CONTENT).end()
 }

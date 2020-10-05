@@ -16,7 +16,7 @@
     "install": "node ./bin/copy-env.js",
     "start": "node dist/index.js",
     "build": "tsc",
-    "dev:start": "nodemon --exec ts-node src/index.js",
+    "dev:start": "nodemon",
     "test": "jest ./tests",
     "test:watch": "jest --watchAll",
     "test:integretion": "jest ./tests/it"
@@ -55,11 +55,16 @@
     "testEnvironment": "node",
     "preset": "ts-jest/presets/js-with-ts"
   },
+  "nodemonConfig": {
+    "ext": "json,js,ts",
+    "exec": "ts-node src/index.js"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "chalk": "^4.1.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
     "http-status-codes": "^2.1.4",
     "mongoose": "^5.10.5",
     "morgan": "^1.10.0",
