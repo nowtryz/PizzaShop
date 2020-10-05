@@ -1,5 +1,5 @@
 import {Document, model, Schema} from 'mongoose'
-import {Client} from "./types";
+import {Client} from "../types/models";
 import './Booking'
 import './Order'
 

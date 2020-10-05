@@ -1,5 +1,5 @@
 import {model, Document, Schema} from 'mongoose'
-import {Booking} from "./types";
+import {Booking} from "../types/models";
 
 export default model<Booking & Document>('Booking', new Schema({
     date : {

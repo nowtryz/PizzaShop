@@ -1,7 +1,7 @@
 import {StatusCodes} from "http-status-codes/build/cjs";
 import {RequestHandler} from "express";
 import Pizza from '../models/Pizza'
-import {Pizza as IPizza} from "../models/types";
+import {Pizza as IPizza} from "../types/models";
 
 export const createPizza : RequestHandler<{}, IPizza, IPizza> = async (req, res) => {
     const pizza = new Pizza(req.body)

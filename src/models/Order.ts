@@ -1,6 +1,6 @@
 import {model, Schema, Document} from "mongoose";
 import {ProductSchema} from "./Product";
-import {Order} from "./types";
+import {Order} from "../types/models";
 
 export default model<Order & Document>("Order", new Schema({
     products: {
