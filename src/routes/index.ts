@@ -4,10 +4,13 @@ import pizzaRouter from "./pizza";
 import categoryRouter from "./category";
 import productRouter from "./product";
 import orderRouter from "./order"
+import bookingRouter from "./booking"
 
 export default Router()
     .use('/clients', clientRouter)
     .use('/pizze', pizzaRouter)
     .use('/categories', categoryRouter)
     .use('/products', productRouter)
-    .use('/order',orderRouter);
+    .use('/order',orderRouter)
+    .use('/booking',bookingRouter);
+
