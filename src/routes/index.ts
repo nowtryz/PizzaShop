@@ -11,6 +11,6 @@ export default Router()
     .use('/pizze', pizzaRouter)
     .use('/categories', categoryRouter)
     .use('/products', productRouter)
-    .use('/order',orderRouter)
-    .use('/booking',bookingRouter);
+    .use('/orders',orderRouter)
+    .use('/bookings',bookingRouter);
 

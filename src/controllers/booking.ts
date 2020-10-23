@@ -2,12 +2,10 @@ import {StatusCodes} from "http-status-codes/build/cjs";
 import {RequestHandler} from "express";
 import Booking from '../models/Booking'
 import {Booking as IBooking} from "../types/models";
-import order from "src/routes/order";
-import { resourceUsage } from "process";
 
 export const createBooking : RequestHandler<{}, IBooking, IBooking> = async (req,res) =>
 {
-    // Il faut peut etre modifier les params 
+    // Il faut peut etre modifier les params
     const booking = new Booking(req.body)
     try{
         await booking.validate()
@@ -15,8 +13,10 @@ export const createBooking : RequestHandler<{}, IBooking, IBooking> = async (req
     catch(error){
         res.status(StatusCodes.BAD_REQUEST).json(error);
         return
-        
     }
+
+    await booking.save()
+    res.status(StatusCodes.CREATED).json(booking)
 }
 export const readBookings : RequestHandler<{}, Array<IBooking>, null> = async (req,res) =>{
     const bookings = await Booking.find({})
@@ -33,7 +33,7 @@ export const editBooking : RequestHandler<{id: string}, IBooking, IBooking> = as
     const booking = new Booking({...req.body, _id,})
     try {
         await booking.validate()
-        
+
     } catch (error) {
         res.status(StatusCodes.BAD_REQUEST).json(error)
         return

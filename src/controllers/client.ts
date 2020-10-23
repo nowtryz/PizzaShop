@@ -58,13 +58,17 @@ export const deleteClient : RequestHandler<{id:string}, null, null> = async (req
 }
 
 export const readClientOrders : RequestHandler<{id:string}, Array<IOrder>, null> = async (req,res)=>{
-    res.status(StatusCodes.OK).json(await Order.find({
+    const orders = await Order.find({
         client: req.params.id
-    }).select('-client'))
+    }).select('-client')
+
+    res.status(StatusCodes.OK).json(orders)
 }
 
 export const readClientBooking : RequestHandler<{id:string}, Array<IBooking>, null> = async (req,res)=>{
-    res.status(StatusCodes.OK).json(await Booking.find({
+    const bookins = await Booking.find({
         client: req.params.id
-    }).select('-client'))
+    }).select('-client')
+
+    res.status(StatusCodes.OK).json(bookins)
 }
