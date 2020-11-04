@@ -3,6 +3,7 @@ import {closeConnection, initDatabase} from "../../../src/loaders/database";
 import Category from "../../../src/models/Category";
 import {Types} from "mongoose";
 import Pizza from "../../../src/models/Pizza";
+import {Pizza as IPizza} from 'pizza-shop-commons/models'
 
 export default () => describe('Pizza Model tests', ()=> {
     beforeAll( () => initDatabase({serverSelectionTimeoutMS : 5000}))
@@ -52,7 +53,7 @@ export default () => describe('Pizza Model tests', ()=> {
             pizza2.save(),
         ])
 
-        const expected = Category({
+        const expected = new Category({
             name: "Tomato base",
             pizzas: [pizza1._id, pizza2._id]
         })
@@ -62,7 +63,7 @@ export default () => describe('Pizza Model tests', ()=> {
 
         expect(result._id).toStrictEqual(expected._id)
         expect(result.name).toBe(expected.name)
-        expect(result.pizzas.map(p => p.name)).toEqual([pizza1, pizza2].map(p => p.name))
+        expect(result.pizzas.map(p => (p as IPizza).name)).toEqual([pizza1, pizza2].map(p => p.name))
 
         done()
     }, 6000)

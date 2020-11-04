@@ -1,5 +1,5 @@
 import {Document, model, Schema} from 'mongoose'
-import {Product} from "../types/models";
+import {Product} from "pizza-shop-commons/models";
 
 export const ProductSchema = new Schema({
     name : {

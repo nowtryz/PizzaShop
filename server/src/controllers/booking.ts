@@ -1,7 +1,7 @@
 import {StatusCodes} from "http-status-codes/build/cjs";
 import {RequestHandler} from "express";
+import {Booking as IBooking} from 'pizza-shop-commons/models';
 import Booking from '../models/Booking'
-import {Booking as IBooking} from "../types/models";
 
 export const createBooking : RequestHandler<{}, IBooking, IBooking> = async (req,res) =>
 {

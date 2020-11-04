@@ -1,5 +1,5 @@
 import {RequestHandler} from "express";
-import {Category as ICategory} from "../types/models";
+import {Category as ICategory} from "pizza-shop-commons/models";
 import Category from "../models/Category";
 import {StatusCodes} from "http-status-codes/build/cjs";
 import {CategoryBody} from "../types/bodies";

@@ -25,7 +25,7 @@ describe('SimpleProduct Model tests', ()=> {
 
     describe('step 2', () => {
         it('Ensure fetched SimpleProduct is equal', async (done)  => {
-            const expected = SimpleProduct({
+            const expected = new SimpleProduct({
                 name: "Coca-Cola",
                 price: 1.20,
                 type: "drink"
@@ -38,7 +38,7 @@ describe('SimpleProduct Model tests', ()=> {
             expect(result.name).toBe(expected.name)
             expect(result.price).toBe(expected.price)
             expect(result.type).toBe(expected.type)
-            done()
+            if (done) done()
         }, 6000)
     })
 })

@@ -1,5 +1,5 @@
 import {Document, model, Schema} from 'mongoose'
-import {Client} from "../types/models";
+import {Client} from "pizza-shop-commons/models";
 import './Booking'
 import './Order'
 

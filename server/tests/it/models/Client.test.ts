@@ -44,6 +44,7 @@ describe('Client Model tests', ()=> {
             .populate('orders')
             .lean()
 
+        expect(result).not.toBeNull()
         expect(result._id).toStrictEqual(expected._id)
         expect(result.name).toEqual(expected.name)
         expect(result.surname).toEqual(expected.surname)

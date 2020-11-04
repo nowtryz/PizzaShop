@@ -25,7 +25,7 @@ describe('Booking Model tests', ()=> {
     //TODO throw error id count is not an integer
 
     it('Ensure fetched Booking is equal', async (done)  => {
-        const expected = Booking({
+        const expected = new Booking({
             date: Date.now(),
             peopleCount: 7,
             client: Types.ObjectId(),

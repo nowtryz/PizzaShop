@@ -23,7 +23,7 @@ export default () => describe('Pizza Model tests', ()=> {
     })
 
     it('Ensure fetched Pizza is equal', async (done) => {
-        const expected = Pizza({
+        const expected = new Pizza({
             ingredients: ["Mozzarella, Tomatoes, Ham, Mushroom, Olives, Cheese"],
             allergen: ["Milk"],
             name: "Royal",
@@ -34,8 +34,8 @@ export default () => describe('Pizza Model tests', ()=> {
         const result = await Pizza.findById(expected._id, null, {lean: true})
 
         expect(result._id).toStrictEqual(expected._id)
-        expect(...result.ingredients).toBe(...expected.ingredients)
-        expect(...result.allergen).toBe(...expected.allergen)
+        expect([...result.ingredients ]).toBe([...expected.ingredients])
+        expect([...result.allergen]).toBe([...expected.allergen])
         expect(result.name).toBe(expected.name)
         expect(result.price).toBe(expected.price)
         done()

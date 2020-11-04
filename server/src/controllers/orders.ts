@@ -1,7 +1,7 @@
 import {StatusCodes} from "http-status-codes/build/cjs";
 import {RequestHandler} from "express";
 import Order from '../models/Order'
-import {Order as IOrder} from "../types/models";
+import {Order as IOrder} from "pizza-shop-commons/models";
 
 export const createOrder : RequestHandler<{}, IOrder, IOrder> = async (req,res) => {
     const order = new Order(req.body)
