@@ -11,12 +11,12 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
     media: {
-        height: 140,
+        height: 300,
     },
     actions: {
         justifyContent: 'center'
     }
-});
+})
 
 
 
@@ -28,20 +28,18 @@ const Pizza = ({img = defaultImage, name, ingredients} : PizzaProps) => {
     return (
         <div>
             <Card>
-                <CardActionArea>
-                    <CardMedia className={classes.media} image={img} title={name}/>
-                    <CardContent>
-                        <Typography gutterBottom variant="h6" component="h2">
-                            {name}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary">
-                            ingrédients
-                        </Typography>
-                        <Typography variant="body1" component="p">
-                            {ingredients.join(', ')}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
+                <CardMedia className={classes.media} image={img} title={name}/>
+                <CardContent>
+                    <Typography gutterBottom variant="h4" component="h2">
+                        {name}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                        ingrédients
+                    </Typography>
+                    <Typography variant="body1" component="p">
+                        {ingredients.join(', ')}
+                    </Typography>
+                </CardContent>
                 <CardActions className={classes.actions}>
                     <Button variant="contained" color="primary">
                         Commander

@@ -1,4 +1,5 @@
 <!-- PROJECT SHIELDS -->
+[![lerna][lerma-shield]](https://lerna.js.org)
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -126,3 +127,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 [issues-url]: https://github.com/nowtryz/PizzaShop/issues
 [license-shield]: https://img.shields.io/github/license/nowtryz/PizzaShop.svg
 [license-url]: https://github.com/nowtryz/PizzaShop/blob/master/LICENSE.txt
+[lerma-shield]: https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg
