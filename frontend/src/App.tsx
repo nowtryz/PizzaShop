@@ -2,16 +2,15 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Pizza from "./components/pizza";
-import ButtonAppBar from "./components/head";
 import ButtonBases from "./components/carrousel";
 import ButtonBasesP from "./components/carrouselP";
 import ImageBases from "./components/image";
-import Header from "./components/Header1";
+import ButtonAppBar from "./components/appBar";
 
 function App() {
   return (
     <div className="App">
-
+      <ButtonAppBar></ButtonAppBar>
       <ImageBases></ImageBases>
       <header className="App-header">
       <h1>Bienvenue sur notre super site de Pizzeria</h1>
