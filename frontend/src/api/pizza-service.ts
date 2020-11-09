@@ -1,6 +1,6 @@
 import {Pizza} from 'pizza-shop-commons/models';
+import {ApiDocument} from "pizza-shop-commons/api";
 import axios from "./axios";
-import {ApiDocument} from "../types/api";
 
 
 export const createPizza = async (pizza: Pizza): Promise<Pizza & ApiDocument> => {

@@ -39,21 +39,19 @@ export default function ButtonAppBar() {
 
   return (
     <MuiThemeProvider theme={theme}>
-      
-    
-    <div className={classes.root}>
-      <AppBar position="static" color="secondary" >
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h3" className={classes.title}>
-            MAMA Pizza
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
+      <div className={classes.root}>
+        <AppBar position="static" color="secondary" >
+          <Toolbar>
+            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h3" className={classes.title}>
+              MAMA Pizza
+            </Typography>
+            <Button color="inherit">Login</Button>
+          </Toolbar>
+        </AppBar>
+      </div>
     </MuiThemeProvider>
   );
 }
