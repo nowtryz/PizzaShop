@@ -7,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core/styles";
+import {Skeleton} from "@material-ui/lab";
 
 
 const useStyles = makeStyles({
@@ -22,7 +23,34 @@ const useStyles = makeStyles({
 
 const defaultImage = "https://img.cuisineaz.com/610x610/2016-04-28/i96018-pizza-reine.jpg"
 
-const Pizza = ({img = defaultImage, name, ingredients} : PizzaProps) => {
+export const PizzaSkeleton = () => {
+    const classes = useStyles();
+    return (
+        <div>
+            <Card>
+                <Skeleton animation="wave" variant="rect" className={classes.media} />
+                <CardContent>
+                    <Typography gutterBottom variant="h4" component="h2">
+                        <Skeleton animation="wave" />
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                        <Skeleton animation="wave" />
+                    </Typography>
+                    <Typography variant="body1" component="p">
+                        <Skeleton animation="wave" />
+                    </Typography>
+                </CardContent>
+                <CardActions className={classes.actions}>
+                    <Button variant="contained" color="primary">
+                        Commander
+                    </Button>
+                </CardActions>
+            </Card>
+        </div>
+    )
+}
+
+const Pizza = ({img = defaultImage, name, ingredients, price} : PizzaProps) => {
     const classes = useStyles();
 
     return (
@@ -37,7 +65,10 @@ const Pizza = ({img = defaultImage, name, ingredients} : PizzaProps) => {
                         ingrédients
                     </Typography>
                     <Typography variant="body1" component="p">
-                        {ingredients.join(', ')}
+                        {ingredients.length > 0 ? ingredients.join(', ') : 'aucun'}
+                    </Typography>
+                    <Typography variant="body1" component="p">
+                        Prix: {price} €
                     </Typography>
                 </CardContent>
                 <CardActions className={classes.actions}>
@@ -53,6 +84,7 @@ const Pizza = ({img = defaultImage, name, ingredients} : PizzaProps) => {
 export type PizzaProps = {
     img?: string
     name: string
+    price: number
     ingredients: string[]
 }
 

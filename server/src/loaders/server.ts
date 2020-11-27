@@ -1,10 +1,11 @@
 import 'express-async-errors'
-import {StatusCodes} from "http-status-codes/build/cjs";
-import express from "express";
-import bodyParser from "body-parser";
-import morgan from "morgan";
-import apiRouter from "../routes";
-import logger from "./logger";
+import {StatusCodes} from "http-status-codes/build/cjs"
+import cors from "cors"
+import express from "express"
+import bodyParser from "body-parser"
+import morgan from "morgan"
+import apiRouter from "../routes"
+import logger from "./logger"
 
 export default express()
 
@@ -17,6 +18,8 @@ export default express()
 // Use the morgan logging
     .use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
+    .use(cors())
+
 // Routes
     .use('/api/v1/', apiRouter)
 
@@ -24,7 +27,6 @@ export default express()
     .use(async (error : Error, req, res, next) => {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(error)
         logger.error(error.message)
-        next()
     })
 
 // Ressource not found
