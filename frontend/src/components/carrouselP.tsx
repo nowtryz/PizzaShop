@@ -28,6 +28,8 @@ const useStyles = makeStyles((theme: Theme) =>
       flexWrap: 'wrap',
       minWidth: 300,
       width: '100%',
+      fontFamily:'Lobster',
+      justifyContent: 'center',
     },
     image: {
       position: 'relative',
@@ -83,6 +85,8 @@ const useStyles = makeStyles((theme: Theme) =>
     imageTitle: {
       position: 'relative',
       padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${theme.spacing(1) + 6}px`,
+      fontFamily:'Lobster',
+      fontSize:16,
     },
     imageMarked: {
       height: 3,
@@ -101,7 +105,10 @@ export default function ButtonBasesP() {
 
   return (
     <div className={classes.root}>
+      <h1 className={classes.root}>Bienvenue sur notre super site de Pizzeria</h1>
+      <p className={classes.root}>Venez Déguster nos nouveautés</p>
       {images.map((image) => (
+        
         <ButtonBase
           focusRipple
           key={image.title}
@@ -130,7 +137,9 @@ export default function ButtonBasesP() {
             </Typography>
           </span>
         </ButtonBase>
+        
       ))}
+      
     </div>
   );
 }

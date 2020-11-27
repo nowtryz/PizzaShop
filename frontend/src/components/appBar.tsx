@@ -7,6 +7,10 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+
+
+
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -15,12 +19,15 @@ const useStyles = makeStyles((theme: Theme) =>
       background: 'none',
       color: "white",
       boxShadow: 'none',
+      fontSize:18,
 
     },
     menuButton: {
       marginRight: theme.spacing(1),
       fontFamily: 'Lobster',
       color: "white",
+      fontSize:18,
+      
       
     },
     title: {
@@ -35,18 +42,18 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function ButtonAppBar() {
   const classes = useStyles();
-
+  
   return (
     
     <AppBar position="fixed" color="default" classes={{root:classes.root}}>
         <Toolbar>
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant="h5" className={classes.title}>
             Mama Pizza
             </Typography>
             <Button className={classes.menuButton} >Commander</Button>
             <Button className={classes.menuButton} >Notre Carte</Button>
         </Toolbar>
     </AppBar>
-   
+    
   );
 }
