@@ -5,17 +5,27 @@ import {ApiDocument} from "pizza-shop-commons/api"
 import Pizza, {PizzaSkeleton} from "./pizza"
 import {Container, createStyles, Grid} from "@material-ui/core"
 import {makeStyles} from "@material-ui/core/styles";
+import {useDispatch} from "react-redux";
+import {addProduct, openOrderDialog} from "../store/order/actions";
 
 const useStyle = makeStyles(theme => createStyles({
     container: {
         marginTop: theme.spacing(3),
         marginBottom: theme.spacing(3),
+    },
+    pizza: {
+        height: '100%'
     }
 }))
 
 const PizzaList = () => {
     const [{ data, loading, error }] = useAxios<(IPizza & ApiDocument)[]>('/pizze')
     const classes = useStyle()
+    const dispatch = useDispatch()
+    const order = (pizza: IPizza) => {
+        dispatch(addProduct(pizza))
+        dispatch(openOrderDialog())
+    }
 
     return (
         <Container classes={{root: classes.container}} maxWidth="lg">
@@ -24,9 +34,15 @@ const PizzaList = () => {
                     <Grid item xl={3} xs={12} key={i}>
                         <PizzaSkeleton />
                     </Grid>
-                )) : data.map(({_id, name, ingredients, price}) => (
-                    <Grid item lg={3} md={4} sm={6} xs={12} key={_id}>
-                        <Pizza name={name} ingredients={ingredients} price={price}/>
+                )) : data.map((pizza) => (
+                    <Grid item lg={3} md={4} sm={6} xs={12} key={pizza._id}>
+                        <Pizza
+                            name={pizza.name}
+                            ingredients={pizza.ingredients}
+                            price={pizza.price}
+                            classes={{root: classes.pizza}}
+                            onOrder={() => order(pizza)}
+                        />
                     </Grid>
                 ))}
             </Grid>

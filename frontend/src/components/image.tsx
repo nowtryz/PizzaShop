@@ -1,11 +1,7 @@
 import React from 'react';
-import { Theme, makeStyles, createStyles } from '@material-ui/core/styles';
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
-import img from '../../public/pizza.jpg';
-
-
-
 
 
 const images = [
@@ -14,7 +10,6 @@ const images = [
     title: 'Reservez et deguster sur place',
     width: '100%',
   },
-  
 ];
 
 const useStyles = makeStyles((theme: Theme) =>
