@@ -4,13 +4,16 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
-    "@material-ui/lab": "^4.0.0-alpha.56",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@reduxjs/toolkit": "^1.4.0",
     "axios": "^0.21.0",
     "axios-hooks": "^2.1.0",
     "pizza-shop-commons": "file:../common/dist",
     "react": "^16.8.6",
     "react-dom": "^17.0.1",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
     "typescript": "^4.0.3",
     "web-vitals": "^0.2.4"
   },
@@ -22,6 +25,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.11",
     "react-scripts": "4.0.0"
   },
   "scripts": {
