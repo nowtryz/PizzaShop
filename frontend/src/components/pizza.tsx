@@ -103,7 +103,7 @@ const Pizza = ({img = defaultImage, name, ingredients, price, onOrder, classes:o
                 </Typography>
             </CardContent>
             <CardActions className={classes.actions}>
-                <Button variant="contained" color="primary" onClick={onOrder}>
+                <Button variant="outlined" color="primary" onClick={onOrder}>
                     Commander
                 </Button>
             </CardActions>

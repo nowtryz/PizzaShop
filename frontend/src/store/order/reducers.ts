@@ -1,9 +1,9 @@
-import {Product} from "pizza-shop-commons/models"
-import {ADD_PRODUCT, CLOSE_DIALOG, EMPTY_CART, OPEN_DIALOG, OrderActionTypes} from "./types";
+import {ADD_PRODUCT, CLOSE_DIALOG, EMPTY_CART, OPEN_DIALOG, OrderActionTypes, REMOVE_PRODUCT} from "./types";
+import {ApiProduct} from "../../../../common/src/api";
 
 export interface OrderState {
     dialog: boolean
-    products: Product[]
+    products: ApiProduct[]
 }
 
 const defaultState: OrderState = {
@@ -20,6 +20,11 @@ const orderReducers = (state = defaultState, action: OrderActionTypes) => {
                     ...state.products,
                     action.payload,
                 ],
+            }
+        case REMOVE_PRODUCT:
+            return {
+                ...state,
+                products: state.products.filter(value => value._id !== action.payload._id)
             }
         case EMPTY_CART:
             return {

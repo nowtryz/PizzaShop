@@ -1,10 +1,25 @@
-import {Product} from "pizza-shop-commons/models";
-import {ADD_PRODUCT, CLOSE_DIALOG, EMPTY_CART, EmptyCartAction, OPEN_DIALOG, OrderActionTypes} from "./types";
+import {
+    ADD_PRODUCT,
+    CLOSE_DIALOG,
+    EMPTY_CART,
+    EmptyCartAction,
+    OPEN_DIALOG,
+    OrderActionTypes,
+    REMOVE_PRODUCT
+} from "./types";
+import {ApiProduct} from "pizza-shop-commons/api";
 
 
-export const addProduct = (newProduct: Product): OrderActionTypes => {
+export const addProduct = (newProduct: ApiProduct): OrderActionTypes => {
     return {
         type: ADD_PRODUCT,
+        payload: newProduct
+    }
+}
+
+export const removeProduct = (newProduct: ApiProduct): OrderActionTypes => {
+    return {
+        type: REMOVE_PRODUCT,
         payload: newProduct
     }
 }
