@@ -22,7 +22,7 @@ const PizzaList = () => {
     const [{ data, loading, error }] = useAxios<(ApiPizza)[]>('/pizze')
     const classes = useStyle()
     const dispatch = useDispatch()
-    const order = (pizza: ApiPizza) => {
+    const order = (pizza: ApiPizza) => () => {
         dispatch(addProduct(pizza))
         dispatch(openOrderDialog())
     }
@@ -41,7 +41,7 @@ const PizzaList = () => {
                             ingredients={pizza.ingredients}
                             price={pizza.price}
                             classes={{root: classes.pizza}}
-                            onOrder={() => order(pizza)}
+                            onOrder={order(pizza)}
                         />
                     </Grid>
                 ))}
