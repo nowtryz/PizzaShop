@@ -8,7 +8,9 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {Badge, IconButton} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store";
-import {openOrderDialog} from "../store/order/actions";
+import {openOrder,openBooking} from "../store/actions";
+//import FormDialog from "./booking-dialog";
+
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -41,13 +43,16 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function ButtonAppBar() {
-    const productsCount = useSelector<RootState, number>(state => state.order.products.length)
+    const productsCount = useSelector<RootState, number>(state => state.order.length)
     const dispatch = useDispatch()
     const classes = useStyles();
 
     const onCartClick = () => {
-        dispatch(openOrderDialog())
+        dispatch(openOrder())
     }
+    const BookingOpen = () => {
+      dispatch(openBooking())
+    };
 
     return (
         <AppBar position="fixed" color="default" classes={{root:classes.root}}>
@@ -55,7 +60,10 @@ export default function ButtonAppBar() {
                 <Typography variant="h5" className={classes.title}>
                 Mama Pizza
                 </Typography>
-                <Button className={classes.menuButton} >Commander</Button>
+                <Button className={classes.menuButton} onClick={BookingOpen}>
+                  Reserver
+                  </Button>
+                <Button className={classes.menuButton} onClick={onCartClick} >Commander</Button>
                 <Button className={classes.menuButton} >Notre Carte</Button>
                 <IconButton className={classes.menuButton} aria-label="cart" onClick={onCartClick}>
                     <Badge badgeContent={productsCount} color="error">

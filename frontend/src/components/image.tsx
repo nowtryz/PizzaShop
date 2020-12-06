@@ -2,6 +2,8 @@ import React from 'react';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
+import {useDispatch} from "react-redux";
+import {openBooking} from "../store/actions";
 
 
 const images = [
@@ -92,11 +94,20 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function ImageBases() {
   const classes = useStyles();
+  
+  
+  const dispatch = useDispatch()
+
+  const BookingOpen = () => {
+    dispatch(openBooking())
+  };
+
 
   return (
     <div className={classes.root}>
       {images.map((image) => (
         <ButtonBase
+          onClick={BookingOpen}
           focusRipple
           key={image.title}
           className={classes.image}

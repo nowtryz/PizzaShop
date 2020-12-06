@@ -21,17 +21,7 @@ export interface EmptyCartAction {
     type: typeof EMPTY_CART
 }
 
-export interface OpenOrderDialogAction {
-    type: typeof OPEN_DIALOG
-}
-
-export interface CloseOrderDialogAction {
-    type: typeof CLOSE_DIALOG
-}
-
 export type OrderActionTypes =
     AddProductAction |
     RemoveProductAction |
-    EmptyCartAction |
-    OpenOrderDialogAction |
-    CloseOrderDialogAction
+    EmptyCartAction 

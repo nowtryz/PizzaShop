@@ -1,8 +1,7 @@
 import React, {MouseEventHandler, useState} from 'react'
-import {shallowEqual, useDispatch, useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {RootState} from "../store"
-import {OrderState} from "../store/order/reducers"
-import {closeOrderDialog, emptyCart, removeProduct} from "../store/order/actions"
+import {closeOrder, emptyCart, removeProduct} from "../store/actions"
 import {
     Accordion as MuiAccordion, AccordionDetails as MuiAccordionDetails, AccordionSummary as MuiAccordionSummary,
     Button,
@@ -101,18 +100,19 @@ const AccordionDetails = withStyles((theme) => ({
 }))(MuiAccordionDetails);
 
 const OrderDialog = () => {
-    const {dialog: open, products} = useSelector<RootState, OrderState>(state => state.order, shallowEqual)
+    const open = useSelector<RootState,boolean>(state=>state.dialog.order)
+    const products = useSelector<RootState,ApiProduct[]>(state=>state.order)
     const [selected, setSelected] = useState<string[]>([])
     const dispatch = useDispatch()
     const classes = useStyle()
 
 
     const handleClose = () => {
-        dispatch(closeOrderDialog())
+        dispatch(closeOrder())
     }
 
     const emptyCartAndClose = () => {
-        dispatch(closeOrderDialog())
+        dispatch(closeOrder())
         dispatch(emptyCart())
     }
 

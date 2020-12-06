@@ -6,7 +6,7 @@ import Pizza, {PizzaSkeleton} from "./pizza"
 import {Container, createStyles, Grid} from "@material-ui/core"
 import {makeStyles} from "@material-ui/core/styles"
 import {useDispatch} from "react-redux"
-import {addProduct, openOrderDialog} from "../store/order/actions"
+import {addProduct, openOrder} from "../store/actions"
 
 const useStyle = makeStyles(theme => createStyles({
     container: {
@@ -24,14 +24,14 @@ const PizzaList = () => {
     const dispatch = useDispatch()
     const order = (pizza: ApiPizza) => () => {
         dispatch(addProduct(pizza))
-        dispatch(openOrderDialog())
+        dispatch(openOrder())
     }
 
     return (
         <Container classes={{root: classes.container}} maxWidth="md">
             <Grid container justify="center" spacing={3}>
                 {loading || error ? [1,2,3].map(i => (
-                    <Grid item xl={3} xs={12} key={i}>
+                    <Grid item md={4} sm={6} xs={12}  key={i}>
                         <PizzaSkeleton />
                     </Grid>
                 )) : data.map((pizza) => (

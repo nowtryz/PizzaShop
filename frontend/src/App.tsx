@@ -6,6 +6,7 @@ import ButtonAppBar from "./components/appBar";
 import PizzaForm from "./components/pizza-form";
 import PizzaList from "./components/home-pizza-list";
 import OrderDialog from "./components/order-dialog";
+import BookingDialog from './components/booking-dialog';
 
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
                 <PizzaForm />
             </header>
             <OrderDialog />
+            <BookingDialog/>
         </div>
     );
 }

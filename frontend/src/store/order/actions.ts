@@ -1,9 +1,7 @@
 import {
     ADD_PRODUCT,
-    CLOSE_DIALOG,
     EMPTY_CART,
     EmptyCartAction,
-    OPEN_DIALOG,
     OrderActionTypes,
     REMOVE_PRODUCT
 } from "./types";
@@ -27,17 +25,5 @@ export const removeProduct = (newProduct: ApiProduct): OrderActionTypes => {
 export const emptyCart = (): EmptyCartAction => {
     return {
         type: EMPTY_CART
-    }
-}
-
-export const openOrderDialog = (): OrderActionTypes => {
-    return {
-        type: OPEN_DIALOG
-    }
-}
-
-export const closeOrderDialog = (): OrderActionTypes => {
-    return {
-        type: CLOSE_DIALOG
     }
 }
