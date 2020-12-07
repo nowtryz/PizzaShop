@@ -1,6 +1,5 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 import useAxios from "axios-hooks"
-import {Pizza as IPizza} from "pizza-shop-commons/models"
 import {ApiPizza} from "pizza-shop-commons/api"
 import Pizza, {PizzaSkeleton} from "./pizza"
 import {Container, createStyles, Grid} from "@material-ui/core"
@@ -18,7 +17,7 @@ const useStyle = makeStyles(theme => createStyles({
     }
 }))
 
-const PizzaList = () => {
+const PizzaList = forwardRef<HTMLDivElement>((props, ref) => {
     const [{ data, loading, error }] = useAxios<(ApiPizza)[]>('/pizze')
     const classes = useStyle()
     const dispatch = useDispatch()
@@ -28,7 +27,7 @@ const PizzaList = () => {
     }
 
     return (
-        <Container classes={{root: classes.container}} maxWidth="md">
+        <Container classes={{root: classes.container}} maxWidth="md" ref={ref}>
             <Grid container justify="center" spacing={3}>
                 {loading || error ? [1,2,3].map(i => (
                     <Grid item md={4} sm={6} xs={12}  key={i}>
@@ -48,6 +47,6 @@ const PizzaList = () => {
             </Grid>
         </Container>
     )
-}
+})
 
 export default PizzaList

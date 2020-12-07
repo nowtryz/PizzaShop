@@ -7,11 +7,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
-import { useDispatch, useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {RootState} from "../store"
 import {closeBooking} from "../store/actions";
-import {Booking,Client,Order} from 'pizza-shop-commons/models'
-import {createBooking} from "../api/booking-service";
+import {Booking, Client} from 'pizza-shop-commons/models'
 
 const randomClient: Client= {
   name: "string",
@@ -22,13 +21,12 @@ const randomClient: Client= {
   bookings: [],
   orders:  [],
 };
+
 const initialBooking: Booking =  {
   date: new Date(Date.now()),
   peopleCount: 0,
   client:randomClient ,
-};
-
-
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -39,15 +37,12 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "white",
       boxShadow: 'none',
       fontSize:18,
-
     },
     menuButton: {
       marginRight: theme.spacing(1),
       fontFamily: 'Lobster',
       color: "white",
       fontSize:18,
-
-
     },
     title: {
       marginLeft: theme.spacing(1),
@@ -57,11 +52,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
     },
   }),
-);
-export default function BookingDialog() {
- 
+)
 
-  const open = useSelector<RootState,boolean>(state=>state.dialog.booking) 
+
+export default function BookingDialog() {
+  const open = useSelector<RootState,boolean>(state=>state.dialog.booking)
   const dispatch = useDispatch();
   const handleClose=()=>{
     dispatch(closeBooking())
@@ -69,12 +64,12 @@ export default function BookingDialog() {
 
   return (
     <div>
-      
+
       <Dialog open={open}  onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Reserver une table</DialogTitle>
         <DialogContent>
           <DialogContentText>
-           Si vous voulez déguster une pizza nous vous proposons de réserver une table 
+           Si vous voulez déguster une pizza nous vous proposons de réserver une table
           </DialogContentText>
           <TextField
             autoFocus
@@ -92,7 +87,7 @@ export default function BookingDialog() {
             type="datetime-local"
             fullWidth
           />
-          
+
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

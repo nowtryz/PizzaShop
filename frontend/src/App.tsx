@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import './App.css';
 import ButtonBasesP from "./components/carrouselP";
 import ImageBases from "./components/image";
@@ -7,21 +7,36 @@ import PizzaForm from "./components/pizza-form";
 import PizzaList from "./components/home-pizza-list";
 import OrderDialog from "./components/order-dialog";
 import BookingDialog from './components/booking-dialog';
+import {createMuiTheme, MuiThemeProvider} from "@material-ui/core/styles";
+
+const theme = createMuiTheme({
+    palette: {
+        secondary: {
+            main: '#BFAFA6'
+        }
+    },
+    typography: {
+        fontFamily: "Lobster",
+    },
+})
 
 
 const App = () => {
+    const order = useRef<HTMLDivElement>(null);
     return (
-        <div className="App">
-            <ButtonAppBar/>
-            <ImageBases/>
-            <header className="App-header">
-                <ButtonBasesP/>
-                <PizzaList />
-                <PizzaForm />
-            </header>
+        <MuiThemeProvider theme={theme}>
+            <div className="App">
+                <ButtonAppBar orderRef={order}/>
+                <ImageBases/>
+                <header className="App-header">
+                    <ButtonBasesP/>
+                    <PizzaList ref={order} />
+                    <PizzaForm />
+                </header>
+            </div>
             <OrderDialog />
             <BookingDialog/>
-        </div>
+        </MuiThemeProvider>
     );
 }
 

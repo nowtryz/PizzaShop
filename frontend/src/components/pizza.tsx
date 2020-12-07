@@ -28,8 +28,10 @@ const useStyles = makeStyles(createStyles({
 
 
 const defaultImage = "https://img.cuisineaz.com/610x610/2016-04-28/i96018-pizza-reine.jpg"
+const defaultButtonText = 'Commander'
 
 export type PizzaSkeletonProps = {
+    buttonText?: string
     classes?: {
         media?: string
         actions?: string
@@ -38,6 +40,7 @@ export type PizzaSkeletonProps = {
 }
 
 export const PizzaSkeleton = (props: PizzaSkeletonProps) => {
+    const {buttonText = defaultButtonText} = props
     const classes = {
         ...useStyles(),
         ...props.classes
@@ -58,8 +61,8 @@ export const PizzaSkeleton = (props: PizzaSkeletonProps) => {
                 </Typography>
             </CardContent>
             <CardActions className={classes.actions}>
-                <Button variant="contained" color="primary">
-                    Commander
+                <Button variant="outlined" color="primary">
+                    {buttonText}
                 </Button>
             </CardActions>
         </Card>
@@ -67,6 +70,7 @@ export const PizzaSkeleton = (props: PizzaSkeletonProps) => {
 }
 
 export type PizzaProps = {
+    buttonText?: string
     img?: string
     name: string
     price: number
@@ -79,7 +83,16 @@ export type PizzaProps = {
     onOrder?: MouseEventHandler<HTMLButtonElement>
 }
 
-const Pizza = ({img = defaultImage, name, ingredients, price, onOrder, classes:override} : PizzaProps) => {
+const Pizza = (props : PizzaProps) => {
+    const {
+        buttonText = defaultButtonText,
+        img = defaultImage,
+        classes:override,
+        name,
+        ingredients,
+        price,
+        onOrder,
+    } = props
     const classes = {
         ...useStyles(),
         ...override
@@ -104,7 +117,7 @@ const Pizza = ({img = defaultImage, name, ingredients, price, onOrder, classes:o
             </CardContent>
             <CardActions className={classes.actions}>
                 <Button variant="outlined" color="primary" onClick={onOrder}>
-                    Commander
+                    {buttonText}
                 </Button>
             </CardActions>
         </Card>
