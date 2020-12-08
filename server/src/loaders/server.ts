@@ -6,19 +6,54 @@ import bodyParser from "body-parser"
 import morgan from "morgan"
 import apiRouter from "../routes"
 import logger from "./logger"
+import session from 'express-session'
+import connectMongo from 'connect-mongo'
+import {connection} from 'mongoose'
+import {httpServer} from "./config"
+import {Strategy, ExtractJwt} from 'passport-jwt'
+import passport from 'passport'
+import compression from 'compression'
+import Client from "../models/Client";
+
+const MongoStore = connectMongo(session)
+
+// Configure passport authentication
+passport.use(new Strategy({
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: httpServer.jwtSecret,
+}, async (jwt_payload, done) => {
+    try {
+        const user = await Client.findOne({id: jwt_payload.sub})
+        done(null, user || false)
+    } catch (err) {
+        return done(err, false)
+    }
+}))
 
 export default express()
 
 // used to fetch the data from forms on HTTP POST, and PUT
     .use(bodyParser.json())
-    .use(bodyParser.urlencoded({
-        extended: true
-    }))
+    .use(bodyParser.urlencoded({extended: true}))
 
 // Use the morgan logging
     .use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
+// Other configuration for best practices
     .use(cors())
+    .use(compression())
+
+// Use mongo sessions
+    .use(session({
+        resave: true,
+        saveUninitialized: true,
+        secret: httpServer.sessionSecret,
+        store: new MongoStore({mongooseConnection: connection, autoReconnect: true})
+    }))
+
+// use Jwt authentification
+    .use(passport.initialize())
+    // .use(passport.session())
 
 // Routes
     .use('/api/v1/', apiRouter)

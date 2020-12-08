@@ -18,4 +18,6 @@ db.uri = `mongodb://${db.ip}:${db.port}/${db.name}`
 
 export const httpServer = {
     port: parseInt(process.env.PORT, 10),
+    sessionSecret: process.env.SESSION_SECRET || "",
+    jwtSecret: process.env.JWT_SECRET || "",
 }

@@ -1,6 +1,4 @@
-//Access the router on Express
 import {Router} from 'express'
-//Access the controllers
 import {
     createClient,
     deleteClient,
@@ -8,8 +6,8 @@ import {
     readClient,
     readClientBooking,
     readClientOrders,
-    readClients
-} from "../controllers/client";
+    readClients,
+} from "../controllers/client"
 
 
 export default Router()
