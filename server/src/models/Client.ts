@@ -19,12 +19,15 @@ const ClientSchema = new Schema({
     },
     email : {
         type: String,
-        index: true,
+        index: {
+            unique: true,
+        },
         required: true,
     },
-    pwd : {
+    password : {
         type: String,
         required: true,
+        select: false,
     },
     loyaltyPoint : {
         type: Number,
@@ -49,11 +52,11 @@ ClientSchema.virtual('orders', {
 // Hash the password before we even save it to the database
 ClientSchema.pre<Client & Document>('save', async function(next) {
     const user: Client & Document = this;
-    if (!user.isModified('pwd')) return next();
+    if (!user.isModified('password')) return next();
 
     try {
         const salt = await bcrypt.genSalt(10)
-        user.pwd = await bcrypt.hash(user.pwd, salt, null);
+        user.password = await bcrypt.hash(user.password, salt, null);
         next();
     } catch (err) {
         return next(err)

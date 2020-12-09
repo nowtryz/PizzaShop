@@ -34,7 +34,7 @@ export interface Client {
     name: string
     surname: string
     email: string
-    pwd: string
+    password: string
     loyaltyPoint: bigint
     bookings: Array<Booking & Document>
     orders: Array<Order & Document>

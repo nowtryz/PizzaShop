@@ -1,5 +1,5 @@
 type Session = Partial<{
-    id: any,
+    userId: any,
     email: string,
     logged: boolean,
 }>
@@ -9,7 +9,7 @@ export default Session
 
 declare module 'express-session' {
     interface SessionData {
-        id: any,
+        userId: any,
         email: string,
         logged: boolean,
     }

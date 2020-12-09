@@ -1,4 +1,5 @@
 import 'express-async-errors'
+import '../types/session'
 import {StatusCodes} from "http-status-codes/build/cjs"
 import cors from "cors"
 import express from "express"
@@ -10,25 +11,12 @@ import session from 'express-session'
 import connectMongo from 'connect-mongo'
 import {connection} from 'mongoose'
 import {httpServer} from "./config"
-import {Strategy, ExtractJwt} from 'passport-jwt'
-import passport from 'passport'
+import passport from './passport'
 import compression from 'compression'
-import Client from "../models/Client";
 
 const MongoStore = connectMongo(session)
 
-// Configure passport authentication
-passport.use(new Strategy({
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: httpServer.jwtSecret,
-}, async (jwt_payload, done) => {
-    try {
-        const user = await Client.findOne({id: jwt_payload.sub})
-        done(null, user || false)
-    } catch (err) {
-        return done(err, false)
-    }
-}))
+
 
 export default express()
 
@@ -53,7 +41,7 @@ export default express()
 
 // use Jwt authentification
     .use(passport.initialize())
-    // .use(passport.session())
+    .use(passport.session())
 
 // Routes
     .use('/api/v1/', apiRouter)
@@ -61,7 +49,7 @@ export default express()
 // Catch internal server error
     .use(async (error : Error, req, res, next) => {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(error)
-        logger.error(error.message)
+        logger.error(error.message, { error })
     })
 
 // Ressource not found

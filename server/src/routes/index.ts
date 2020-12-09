@@ -6,13 +6,15 @@ import productRouter from "./product";
 import orderRouter from "./order"
 import bookingRouter from "./booking"
 import authentication from "./authentication";
+import passport from "../loaders/passport";
 
+// Sensitive routes are protected by passport
 export default Router()
-    .use(authentication)
-    .use('/clients', clientRouter)
+    .use(passport.authenticate('jwt', {session:false}), authentication)
+    .use('/clients', passport.authenticate('jwt', {session:false}), clientRouter)
+    .use('/orders', passport.authenticate('jwt', {session:false}), orderRouter)
+    .use('/bookings', passport.authenticate('jwt', {session:false}), bookingRouter)
     .use('/pizze', pizzaRouter)
     .use('/categories', categoryRouter)
     .use('/products', productRouter)
-    .use('/orders',orderRouter)
-    .use('/bookings',bookingRouter);
 

@@ -5,7 +5,17 @@ import {db} from "./config";
 
 export const initDatabase = async (options={}) => {
     logger.info(chalk.green("Connecting to database"))
+
+    if (db.verbose) {
+        mongoose.set('debug', true)
+    }
+
+    // As from https://stackoverflow.com/questions/51960171/node63208-deprecationwarning-collection-ensureindex-is-deprecated-use-creat
+    mongoose.set('useNewUrlParser', true);
+    mongoose.set('useFindAndModify', false);
+    mongoose.set('useCreateIndex', true);
     await mongoose.connect(db.uri, {useNewUrlParser: true, useUnifiedTopology : true, ...options})
+
     logger.info(chalk.green("Connected to database"))
 }
 

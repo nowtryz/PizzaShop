@@ -86,6 +86,7 @@
     "@types/jest": "^26.0.14",
     "@types/mongoose": "^5.7.36",
     "@types/node": "^14.11.2",
+    "@types/passport": "^1.0.4",
     "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "ts-jest": "^26.4.1",
