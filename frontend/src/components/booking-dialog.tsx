@@ -16,7 +16,7 @@ const randomClient: Client= {
   name: "string",
   surname: "string",
   email: "string",
-  pwd: "string",
+  password : "string",
   loyaltyPoint:BigInt(0),
   bookings: [],
   orders:  [],

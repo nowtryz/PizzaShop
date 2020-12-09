@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Veuillez patienter...</title>
+</head>
+<body>
+    <p>Veuillez patienter...</p>
+    <script type="application/javascript">
+        // get the URL parameters which will include the auth token
+        const params = window.location.search;
+        if (window.opener) {
+            // send them to the opening window
+            window.opener.postMessage(params, '*');
+            // close the popup
+            window.close();
+        }
+    </script>
+</body>
+</html>

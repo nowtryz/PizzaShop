@@ -75,6 +75,7 @@
     "mongoose": "^5.10.5",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
+    "passport-google-oauth": "^2.0.0",
     "passport-jwt": "^4.0.0",
     "pizza-shop-commons": "file:../common/dist",
     "winston": "^3.3.3"

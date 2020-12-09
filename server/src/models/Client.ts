@@ -26,7 +26,7 @@ const ClientSchema = new Schema({
     },
     password : {
         type: String,
-        required: true,
+        // required: true,
         select: false,
     },
     loyaltyPoint : {
@@ -47,10 +47,9 @@ ClientSchema.virtual('orders', {
     foreignField: 'client',
 })
 
-// TODO drop password on serializations
-
 // Hash the password before we even save it to the database
 ClientSchema.pre<Client & Document>('save', async function(next) {
+    // @ts-ignore
     const user: Client & Document = this;
     if (!user.isModified('password')) return next();
 

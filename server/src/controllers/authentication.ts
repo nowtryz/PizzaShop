@@ -4,6 +4,7 @@ import {RequestHandler} from "express"
 import {StatusCodes} from "http-status-codes/build/cjs";
 import Client from "../models/Client"
 import '../types/express-user'
+import path from "path";
 
 const createToken = ({_id, email}) => jwt.sign(
     {id: _id, username: email},
@@ -24,6 +25,27 @@ export const signIn: RequestHandler = async (req, res) => {
 }
 
 export const signup : RequestHandler = async (req, res) => {
+    if (!req.body.password) {
+        res.status(StatusCodes.BAD_REQUEST).json({
+            errors:{
+                password:{
+                    name:"ValidatorError",
+                    message:"Path `password` is required.",
+                    properties:{
+                        message:"Path `password` is required.",
+                        type:"required",
+                        path:"password"
+                    },
+                    kind:"required",
+                    path:"password"
+                }
+            },
+            _message:"Client validation failed",
+            message:"Client validation failed: password: Path `password` is required."
+        })
+        return
+    }
+
     const client = new Client({
         name: req.body.name,
         surname: req.body.surname,
@@ -77,4 +99,8 @@ export const profile : RequestHandler = (req, res) => {
             message: 'You must be logged'
         })
 
+}
+
+export const openIdConnect : RequestHandler = (req, res) => {
+    res.sendFile(path.join(__dirname, '../views', 'return.html'))
 }
