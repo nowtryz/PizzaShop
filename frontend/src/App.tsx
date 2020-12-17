@@ -10,6 +10,8 @@ import BookingDialog from './components/booking-dialog';
 import {createMuiTheme, MuiThemeProvider} from "@material-ui/core/styles";
 import {Button} from "@material-ui/core";
 import openSignInWindow from "./utils/pop-up";
+import {GoogleLoginButton} from "react-social-login-buttons";
+  
 
 const theme = createMuiTheme({
     palette: {
@@ -38,7 +40,7 @@ const App = () => {
                 <ImageBases/>
                 <header className="App-header">
                     <p>
-                        <Button onClick={openSignIn}>Se connecter avec Google</Button>
+                        <GoogleLoginButton onClick={openSignIn} />
                     </p>
                     <ButtonBasesP/>
                     <PizzaList ref={order} />
