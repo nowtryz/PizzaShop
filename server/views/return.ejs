@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Veuillez patienter...</title>
+    </head>
+    <body>
+        <p>Veuillez patienter...</p>
+        <script type="application/javascript">
+            if (window.opener) {
+                // send them to the opening window
+                window.opener.postMessage({
+                    action: 'auth',
+                    token:'<%- token %>',
+                }, '*');
+                // close the popup
+                window.close();
+            }
+        </script>
+    </body>
+</html>

@@ -4,7 +4,8 @@ import {configure} from "axios-hooks"
 const axios = Axios.create({
     baseURL: `${process.env.REACT_APP_BACKEND_URL}/api/v1/`,
     headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Accept': 'application/json'
     }
 })
 

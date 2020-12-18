@@ -9,3 +9,9 @@ export type ApiDocument = {
 export type ApiProduct = ApiDocument & Product
 export type ApiPizza = ApiDocument & Pizza
 export type ApiBooking = ApiDocument & Booking
+export type ApiClient = ApiDocument & Client
+
+export type ApiLogin = {
+    token: string
+    user: ApiClient
+}

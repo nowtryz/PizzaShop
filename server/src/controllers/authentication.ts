@@ -4,23 +4,20 @@ import {RequestHandler} from "express"
 import {StatusCodes} from "http-status-codes/build/cjs";
 import Client from "../models/Client"
 import '../types/express-user'
-import path from "path";
 
 const createToken = ({_id, email}) => jwt.sign(
     {id: _id, username: email},
     httpServer.jwtSecret,
+    {issuer: httpServer.url, audience: httpServer.url,},
 )
 
 export const signIn: RequestHandler = async (req, res) => {
-    const client = await Client.findOne({email: req.body.email}).select('+password')
-
-    if (client && client.comparePassword(req.body.password)) {
-        req.session.userId = client._id
-        req.session.email = client.email
-        req.session.logged = true
-        res.status(200).json({token: createToken(client)})
-    } else res.status(StatusCodes.UNAUTHORIZED).json({
-        message: 'Unable to sign in'
+    if (req.user) res.status(StatusCodes.OK).json({
+        token: createToken(req.user),
+        user: req.user,
+    })
+    else res.status(StatusCodes.BAD_REQUEST).json({
+        message: "no user"
     })
 }
 
@@ -92,6 +89,7 @@ export const signOut: RequestHandler = (req, res, next) => {
 }
 
 export const profile : RequestHandler = (req, res) => {
+    console.log(req.user)
     if (req.user) res.json(req.user);
     else res
         .status(StatusCodes.UNAUTHORIZED)
@@ -102,5 +100,8 @@ export const profile : RequestHandler = (req, res) => {
 }
 
 export const openIdConnect : RequestHandler = (req, res) => {
-    res.sendFile(path.join(__dirname, '../views', 'return.html'))
+    if (req.user) res.render('return.ejs', {token: createToken(req.user)})
+    else res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        message: 'unable to log the user'
+    })
 }

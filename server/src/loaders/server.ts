@@ -20,6 +20,9 @@ const MongoStore = connectMongo(session)
 
 export default express()
 
+// set the view engine to ejs
+    .set('view engine', 'ejs')
+
 // used to fetch the data from forms on HTTP POST, and PUT
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({extended: true}))

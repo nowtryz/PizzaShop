@@ -2,27 +2,34 @@
 let windowObjectReference : Window | null = null;
 let previousUrl : string | null = null;
 
+let popCallBack:  ((event: MessageEvent) => void) | undefined
+
 const w = 601
 const h = 700
+
+const receiveMessage = (event : MessageEvent) => {
+    // Do we trust the sender of this message? (might be
+    // different from what we originally opened, for example).
+    if (event.origin !== process.env.REACT_APP_BACKEND_URL) {
+        return;
+    }
+
+    if (typeof event.data === 'object' && event.data !== null && event.data.action === 'auth' && popCallBack) {
+        popCallBack(event)
+        window.removeEventListener('message', receiveMessage)
+    }
+}
 
 /**
  *
  * @param url
  * @param name
+ * @param callback
  * @see https://dev.to/dinkydani21/how-we-use-a-popup-for-google-and-outlook-oauth-oci
  * @see https://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen
  */
-const openSignInWindow = (url : string, name : string) => {
-    const receiveMessage = (event : MessageEvent) => {
-        // Do we trust the sender of this message? (might be
-        // different from what we originally opened, for example).
-        if (event.origin !== process.env.REACT_APP_BACKEND_URL) {
-            return;
-        }
-
-        // TODO send action to store
-        // or call callback
-    }
+const openSignInWindow = (url : string, name : string, callback? : (event: MessageEvent) => void) => {
+    popCallBack = callback
 
     // remove any existing event listeners
     window.removeEventListener('message', receiveMessage)

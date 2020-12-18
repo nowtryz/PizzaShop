@@ -1,10 +1,29 @@
 import passport from 'passport'
-import {Strategy as JwtStrategy, ExtractJwt} from 'passport-jwt'
-import {OAuth2Strategy as GoogleStrategy } from 'passport-google-oauth'
+import {BasicStrategy} from 'passport-http'
+import {ExtractJwt, Strategy as JwtStrategy} from 'passport-jwt'
+import {OAuth2Strategy as GoogleStrategy} from 'passport-google-oauth'
 import {httpServer} from './config';
 import Client from '../models/Client'
 import {Client as IClient} from 'pizza-shop-commons/models'
 import {Document} from 'mongoose'
+
+// user/password authentication
+passport.use(new BasicStrategy(
+    async (email, password, done) => {
+        try {
+            const user = await Client.findOne({email}).select('+password')
+            console.log(user)
+
+            if (user && user.comparePassword(password)) {
+                done(null, user)
+            } else {
+                done(null, false)
+            }
+        } catch (err) {
+            return done(err, false)
+        }
+    }
+));
 
 
 
@@ -14,9 +33,11 @@ passport.use(new JwtStrategy({
     secretOrKey: httpServer.jwtSecret,
     issuer: httpServer.url,
     audience: httpServer.url,
+    session: true
 }, async (jwtPayload, done) => {
     try {
         const user = await Client.findOne({_id: jwtPayload.id})
+        console.log(user)
         done(null, user || false)
     } catch (err) {
         return done(err, false)
@@ -29,6 +50,7 @@ passport.use(new GoogleStrategy(
         clientID: httpServer.GOOGLE_OAUTH_ID,
         clientSecret: httpServer.GOOGLE_OAUTH_SECRET,
         callbackURL: `${httpServer.url}/api/v1/auth/google/return`,
+        session: true
     }, async (token, tokenSecret, profile, done) => {
         const {given_name, family_name, email} = profile._json
         try {

@@ -8,10 +8,13 @@ import PizzaList from "./components/home-pizza-list";
 import OrderDialog from "./components/order-dialog";
 import BookingDialog from './components/booking-dialog';
 import {createMuiTheme, MuiThemeProvider} from "@material-ui/core/styles";
-import {Button} from "@material-ui/core";
 import openSignInWindow from "./utils/pop-up";
+import {useDispatch} from "react-redux";
+import axios from "./api/axios";
+import {ApiLogin} from "pizza-shop-commons/api";
+import {signIn, startLoadingUser, stopLoadingUser} from "./store/actions";
 import {GoogleLoginButton} from "react-social-login-buttons";
-  
+
 
 const theme = createMuiTheme({
     palette: {
@@ -24,14 +27,34 @@ const theme = createMuiTheme({
     },
 })
 
-const openSignIn = () => openSignInWindow(
-    `${process.env.REACT_APP_BACKEND_URL}/api/v1/auth/google`,
-    'login to google'
-)
+
 
 
 const App = () => {
-    const order = useRef<HTMLDivElement>(null);
+    const order = useRef<HTMLDivElement>(null)
+    const dispatch = useDispatch()
+
+    const openSignIn = () => openSignInWindow(
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/auth/google`,
+        'login to google',
+        async event => {
+            const {token} = event.data
+            dispatch(startLoadingUser())
+
+            try {
+                const result = await axios.post<ApiLogin>('/sign-in', null,{headers: {
+                    'Authorization': 'Bearer ' + token
+                }})
+
+                const {user} = result.data
+                dispatch(signIn(user))
+            } catch (err) {
+                dispatch(stopLoadingUser())
+                console.log(err)
+                // TODO show error to user
+            }
+        },
+    )
 
     return (
         <MuiThemeProvider theme={theme}>
@@ -40,7 +63,7 @@ const App = () => {
                 <ImageBases/>
                 <header className="App-header">
                     <p>
-                        <GoogleLoginButton onClick={openSignIn} />
+                        <GoogleLoginButton onClick={openSignIn} text="Connexion avec Google"/>
                     </p>
                     <ButtonBasesP/>
                     <PizzaList ref={order} />

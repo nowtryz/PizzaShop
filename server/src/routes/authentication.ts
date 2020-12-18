@@ -4,9 +4,9 @@ import passport from "passport";
 
 export default Router()
     .post('/signup', signup)
-    .post('/sign-in', signIn)
-    .post('/sign-out', passport.authenticate('jwt', {session:false, }), signOut)
-    .get('/profile', passport.authenticate('jwt', {session:false, }), profile)
+    .post('/sign-in', passport.authenticate(['basic', 'jwt'], {session: false}), signIn)
+    .post('/sign-out', signOut)
+    .get('/profile', profile)
 
 export const openIdRouter = Router()
     .post('/auth/openid', passport.authenticate('openid'))
