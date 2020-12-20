@@ -10,6 +10,10 @@ export const ProductSchema = new Schema({
         type: Number,
         required: true,
     },
+    url : {
+        type : String,
+        required: false,
+    },
 })
 
 export default model<Product & Document>('Product', ProductSchema);
