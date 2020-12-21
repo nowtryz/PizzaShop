@@ -5,6 +5,7 @@ export type Ref<T> = Types.ObjectId | T
 export interface Product {
     name: string
     price: number
+    image?: string
 }
 
 export interface Pizza extends Product {

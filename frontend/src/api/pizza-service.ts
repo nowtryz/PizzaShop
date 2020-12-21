@@ -1,5 +1,5 @@
-import {Pizza} from 'pizza-shop-commons/models'
-import {ApiPizza} from "pizza-shop-commons/api"
+import {Pizza} from '@pizza-shop/common'
+import {ApiPizza} from "@pizza-shop/common"
 import axios from "./axios"
 
 

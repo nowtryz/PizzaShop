@@ -1,16 +1,18 @@
 {
-  "name": "pizza-shop-front",
-  "version": "0.1.0",
+  "name": "@pizza-shop/frontend",
+  "version": "1.0.0",
   "private": true,
+  "license": "MIT",
+  "description": "A JavaScript full stack application for a pizza shop (School project)",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
+    "@pizza-shop/common": "1.0.0",
     "@reduxjs/toolkit": "^1.4.0",
     "axios": "^0.21.0",
     "axios-hooks": "^2.1.0",
     "classnames": "^2.2.6",
-    "pizza-shop-commons": "file:../common/dist",
     "react": "^16.8.6",
     "react-dom": "^17.0.1",
     "react-parallax": "^3.1.2",
@@ -18,25 +20,23 @@
     "react-redux": "^7.2.2",
     "react-social-login-buttons": "^3.1.0",
     "redux": "^4.0.5",
-    "typescript": "^4.0.3",
+    "typescript": "~4.0.3",
     "web-vitals": "^0.2.4"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.11",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.11",
     "react-scripts": "4.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "postinstall": "node ../bin/copy-env.js",
+    "dev:start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

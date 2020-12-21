@@ -1,5 +1,5 @@
 import React, {FormEvent, useState} from 'react'
-import {Pizza} from 'pizza-shop-commons/models'
+import {Pizza} from '@pizza-shop/common'
 import {createPizza} from "../api/pizza-service";
 import {Button, createStyles, Paper, Snackbar, TextField, Typography} from "@material-ui/core";
 import MuiAlert, {AlertProps} from '@material-ui/lab/Alert';

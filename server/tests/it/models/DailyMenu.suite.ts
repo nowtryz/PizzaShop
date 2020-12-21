@@ -1,5 +1,4 @@
-import {afterAll, beforeAll, beforeEach, describe, it} from "@jest/globals";
-import {closeConnection, initDatabase} from "../../../src/loaders/database";
+import {beforeEach, describe, it} from "@jest/globals";
 import DailyMenu from "../../../src/models/DailyMenu";
 import SimpleProduct from "../../../src/models/SimpleProduct";
 import Pizza from "../../../src/models/Pizza";
@@ -17,7 +16,7 @@ const dessertObj = {
 }
 
 const pizzaObj = {
-    ingredients: ["Mozzarella, Tomatoes, Ham, Mushroom, Olives, Cheese"],
+    ingredients: ["Mozzarella", "Tomatoes", "Ham", "Mushroom", "Olives", "Cheese"],
     allergen: ["Milk"],
     name: "Royal",
     price: 7.50
@@ -46,8 +45,6 @@ const createProducts = async () => {
 }
 
 export default () => describe('DailyMenu Model tests', ()=> {
-    beforeAll(() => initDatabase({serverSelectionTimeoutMS : 5000}))
-    afterAll(closeConnection)
     beforeEach(async () => {
         await Promise.all([
             Pizza.deleteMany({}),
@@ -79,6 +76,6 @@ export default () => describe('DailyMenu Model tests', ()=> {
         expect(result.dessert).toMatchObject(dessertObj)
         expect(result.pizza).toMatchObject(pizzaObj)
 
-        done()
+        done!()
     }, 6000)
 })

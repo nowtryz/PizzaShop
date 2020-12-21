@@ -4,7 +4,7 @@ import {ExtractJwt, Strategy as JwtStrategy} from 'passport-jwt'
 import {OAuth2Strategy as GoogleStrategy} from 'passport-google-oauth'
 import {httpServer} from './config';
 import Client from '../models/Client'
-import {Client as IClient} from 'pizza-shop-commons/models'
+import {Client as IClient} from '@pizza-shop/common'
 import {Document} from 'mongoose'
 
 // user/password authentication

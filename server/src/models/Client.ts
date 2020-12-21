@@ -1,10 +1,10 @@
 import {Document, model, Schema} from 'mongoose'
 import bcrypt from 'bcrypt'
-import {Client} from "pizza-shop-commons/models";
+import {Client} from "@pizza-shop/common";
 import './Booking'
 import './Order'
 
-interface IClient extends Client {
+export interface IClient extends Client, Document {
     comparePassword: (string) => boolean
 }
 
@@ -69,4 +69,4 @@ ClientSchema.methods.comparePassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 }
 
-export default model<IClient & Document>('Client', ClientSchema)
+export default model<IClient>('Client', ClientSchema)

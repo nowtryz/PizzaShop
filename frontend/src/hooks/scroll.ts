@@ -19,7 +19,7 @@ const useScroll = (initialBreakpoint: number) => {
         }
         document.addEventListener("scroll", onScroll)
         return () => document.removeEventListener("scroll", onScroll)
-    }, [breakpoint])
+    }, [breakpoint, scroll])
 
     return [scroll, setBreakpoint]
 }

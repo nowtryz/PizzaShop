@@ -1,4 +1,4 @@
-import {ApiProduct} from "pizza-shop-commons/api";
+import {ApiProduct} from "@pizza-shop/common";
 
 export const ADD_PRODUCT = "add product"
 export const REMOVE_PRODUCT = "remove product"
@@ -24,4 +24,4 @@ export interface EmptyCartAction {
 export type OrderActionTypes =
     AddProductAction |
     RemoveProductAction |
-    EmptyCartAction 
+    EmptyCartAction

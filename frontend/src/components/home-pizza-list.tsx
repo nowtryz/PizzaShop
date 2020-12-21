@@ -1,6 +1,6 @@
 import React, {forwardRef} from 'react'
 import useAxios from "axios-hooks"
-import {ApiPizza} from "pizza-shop-commons/api"
+import {ApiPizza} from "@pizza-shop/common"
 import Pizza, {PizzaSkeleton} from "./pizza"
 import {Container, createStyles, Grid} from "@material-ui/core"
 import {makeStyles} from "@material-ui/core/styles"
@@ -29,7 +29,7 @@ const PizzaList = forwardRef<HTMLDivElement>((props, ref) => {
     return (
         <Container classes={{root: classes.container}} maxWidth="md" ref={ref}>
             <Grid container justify="center" spacing={3}>
-                {loading || error ? [1,2,3].map(i => (
+                {data === undefined || loading || error ? [1,2,3].map(i => (
                     <Grid item md={4} sm={6} xs={12}  key={i}>
                         <PizzaSkeleton />
                     </Grid>
@@ -37,6 +37,7 @@ const PizzaList = forwardRef<HTMLDivElement>((props, ref) => {
                     <Grid item md={4} sm={6} xs={12} key={pizza._id}>
                         <Pizza
                             name={pizza.name}
+                            img={pizza.image || undefined}
                             ingredients={pizza.ingredients}
                             price={pizza.price}
                             classes={{root: classes.pizza}}

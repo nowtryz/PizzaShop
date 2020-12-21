@@ -5,15 +5,15 @@ import {StatusCodes} from "http-status-codes/build/cjs";
 import Client from "../models/Client"
 import '../types/express-user'
 
-const createToken = ({_id, email}) => jwt.sign(
-    {id: _id, username: email},
+const createToken = (id: string, email: string) => jwt.sign(
+    {id, username: email},
     httpServer.jwtSecret,
     {issuer: httpServer.url, audience: httpServer.url,},
 )
 
 export const signIn: RequestHandler = async (req, res) => {
-    if (req.user) res.status(StatusCodes.OK).json({
-        token: createToken(req.user),
+    if (req.user && req.user._id) res.status(StatusCodes.OK).json({
+        token: createToken(req.user._id, req.user.email),
         user: req.user,
     })
     else res.status(StatusCodes.BAD_REQUEST).json({
@@ -100,7 +100,7 @@ export const profile : RequestHandler = (req, res) => {
 }
 
 export const openIdConnect : RequestHandler = (req, res) => {
-    if (req.user) res.render('return.ejs', {token: createToken(req.user)})
+    if (req.user) res.render('return.ejs', {token: createToken(req.user._id, req.user.email)})
     else res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         message: 'unable to log the user'
     })

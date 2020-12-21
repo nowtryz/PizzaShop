@@ -16,7 +16,7 @@ import {
 } from "@material-ui/core"
 import {Close} from "@material-ui/icons"
 import {makeStyles} from "@material-ui/core/styles"
-import {ApiProduct} from "pizza-shop-commons/api"
+import {ApiProduct} from "@pizza-shop/common"
 import {RootState} from "../../store"
 import {closeOrder, emptyCart} from "../../store/actions"
 import Cart from './cart'
@@ -69,7 +69,8 @@ const OrderDialog = () => {
 
     const sendOrder = async (products: ApiProduct[]) => {
         try {
-            const result = await axios.post('orders/create', products)
+            await axios.post('orders/create', products)
+            // TODO use result
         } catch (err) {
             console.error(err)
         }
@@ -78,7 +79,7 @@ const OrderDialog = () => {
     }
 
     const handleNext = () => {
-        if (step == 2) sendOrder(products).then()
+        if (step === 2) sendOrder(products).then()
         setStep(step + 1)
     }
 

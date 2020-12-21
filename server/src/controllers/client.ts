@@ -7,7 +7,7 @@ import {
     Client as IClient,
     Order as IOrder,
     Booking as IBooking,
-} from "pizza-shop-commons/models"
+} from "@pizza-shop/common"
 
 export const createClient : RequestHandler<{}, IClient, IClient, null> = async (req,res) => {
     const newClient = new Client(req.body)

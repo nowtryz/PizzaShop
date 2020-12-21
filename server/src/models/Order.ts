@@ -1,6 +1,6 @@
 import {model, Schema, Document} from "mongoose";
 import {ProductSchema} from "./Product";
-import {Order} from "pizza-shop-commons/models";
+import {Order} from "@pizza-shop/common";
 
 export default model<Order & Document>("Order", new Schema({
     products: {

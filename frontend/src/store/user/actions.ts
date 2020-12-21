@@ -5,7 +5,7 @@ import {
     SIGN_OUT,
     UserActionTypes
 } from "./types";
-import {ApiClient} from "pizza-shop-commons/api";
+import {ApiClient} from "@pizza-shop/common";
 
 
 export const startLoadingUser = (): UserActionTypes => {

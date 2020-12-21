@@ -1,5 +1,5 @@
 import {Document, model, Schema} from 'mongoose'
-import {Product} from "pizza-shop-commons/models";
+import {Product} from "@pizza-shop/common";
 
 export const ProductSchema = new Schema({
     name : {
@@ -10,9 +10,10 @@ export const ProductSchema = new Schema({
         type: Number,
         required: true,
     },
-    url : {
+    image : {
         type : String,
         required: false,
+        default : '',
     },
 })
 

@@ -1,7 +1,7 @@
 import {StatusCodes} from "http-status-codes/build/cjs";
 import {RequestHandler} from "express";
 import Order from '../models/Order'
-import {Order as IOrder} from "pizza-shop-commons/models"
+import {Order as IOrder} from "@pizza-shop/common"
 import Product from "../models/Product"
 import {ErrorMessage} from "../types/messages";
 import {Types} from "mongoose";

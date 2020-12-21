@@ -2,7 +2,7 @@ import { Schema, Document } from 'mongoose'
 import Pizza from './Pizza';
 import Product from './Product';
 import SimpleProduct from './SimpleProduct';
-import {DailyMenu} from "pizza-shop-commons/models";
+import {DailyMenu} from "@pizza-shop/common";
 
 export default Product.discriminator<DailyMenu & Document>('DailyMenu', new Schema({
     starter : {

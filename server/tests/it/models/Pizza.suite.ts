@@ -1,19 +1,13 @@
-import {closeConnection, initDatabase} from '../../../src/loaders/database'
-import {afterAll, afterEach, beforeAll, describe, it} from "@jest/globals"
+import {afterEach, beforeAll, describe, it} from "@jest/globals"
 import Pizza from "../../../src/models/Pizza";
 
 export default () => describe('Pizza Model tests', ()=> {
-    beforeAll(async () => {
-        await initDatabase({serverSelectionTimeoutMS: 5000})
-        await Pizza.deleteMany({})
-    })
-
+    beforeAll(() => Pizza.deleteMany({}))
     afterEach(() => Pizza.deleteMany({}))
-    afterAll(closeConnection)
 
     it('Create a Pizza', async () => {
         await new Pizza({
-            ingredients: ["Mozzarella, Tomatoes, Ham, Mushroom, Olives, Cheese"],
+            ingredients: ["Mozzarella", "Tomatoes", "Ham", "Mushroom", "Olives", "Cheese"],
             allergen: ["Milk"],
             name: "Royal",
             price: 7.50
@@ -24,7 +18,7 @@ export default () => describe('Pizza Model tests', ()=> {
 
     it('Ensure fetched Pizza is equal', async (done) => {
         const expected = new Pizza({
-            ingredients: ["Mozzarella, Tomatoes, Ham, Mushroom, Olives, Cheese"],
+            ingredients: ["Mozzarella", "Tomatoes", "Ham", "Mushroom", "Olives", "Cheese"],
             allergen: ["Milk"],
             name: "Royal",
             price: 7.50
@@ -34,11 +28,11 @@ export default () => describe('Pizza Model tests', ()=> {
         const result = await Pizza.findById(expected._id, null, {lean: true})
 
         expect(result._id).toStrictEqual(expected._id)
-        expect([...result.ingredients ]).toBe([...expected.ingredients])
-        expect([...result.allergen]).toBe([...expected.allergen])
+        expect(result.ingredients).toStrictEqual([...expected.ingredients])
+        expect(result.allergen).toStrictEqual([...expected.allergen])
         expect(result.name).toBe(expected.name)
         expect(result.price).toBe(expected.price)
-        done()
+        done!()
     }, 6000)
 })
 

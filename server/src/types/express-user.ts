@@ -1,4 +1,4 @@
-import {Client} from 'pizza-shop-commons/models'
+import {Client} from '@pizza-shop/common'
 import {Document} from 'mongoose';
 
 declare global {

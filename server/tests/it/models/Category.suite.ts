@@ -1,19 +1,14 @@
-import {afterAll, beforeAll, beforeEach, describe, it} from "@jest/globals";
-import {closeConnection, initDatabase} from "../../../src/loaders/database";
+import {beforeEach, describe, it} from "@jest/globals";
 import Category from "../../../src/models/Category";
 import {Types} from "mongoose";
 import Pizza from "../../../src/models/Pizza";
-import {Pizza as IPizza} from 'pizza-shop-commons/models'
+import {Pizza as IPizza} from '@pizza-shop/common'
 
 export default () => describe('Pizza Model tests', ()=> {
-    beforeAll( () => initDatabase({serverSelectionTimeoutMS : 5000}))
-
     beforeEach(() => Promise.all([
         Pizza.deleteMany({}),
         Category.deleteMany({}),
     ]))
-
-    afterAll(closeConnection)
 
     it('Create a Category', async () => {
         await new Category({
@@ -63,8 +58,8 @@ export default () => describe('Pizza Model tests', ()=> {
 
         expect(result._id).toStrictEqual(expected._id)
         expect(result.name).toBe(expected.name)
-        expect(result.pizzas.map(p => (p as IPizza).name)).toEqual([pizza1, pizza2].map(p => p.name))
+        expect(result.pizzas.map((p:IPizza) => p.name)).toEqual([pizza1, pizza2].map(p => p.name))
 
-        done()
+        done!()
     }, 6000)
 })

@@ -1,5 +1,5 @@
 import {model, Document, Schema} from 'mongoose'
-import {Booking} from "pizza-shop-commons/models";
+import {Booking} from "@pizza-shop/common";
 
 export default model<Booking & Document>('Booking', new Schema({
     date : {

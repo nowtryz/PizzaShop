@@ -5,7 +5,7 @@ import {
     OrderActionTypes,
     REMOVE_PRODUCT
 } from "./types";
-import {ApiProduct} from "pizza-shop-commons/api";
+import {ApiProduct} from "@pizza-shop/common";
 
 
 export const addProduct = (newProduct: ApiProduct): OrderActionTypes => {

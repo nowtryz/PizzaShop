@@ -1,5 +1,5 @@
 import {RequestHandler} from "express";
-import {Product as IProduct} from "pizza-shop-commons/models";
+import {Product as IProduct} from "@pizza-shop/common";
 import Product from "../models/Product";
 import {StatusCodes} from "http-status-codes/build/cjs";
 

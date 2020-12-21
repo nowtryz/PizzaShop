@@ -1,8 +1,8 @@
-import {afterAll, beforeAll, beforeEach, describe, it} from "@jest/globals";
-import {closeConnection, initDatabase} from "../../../src/loaders/database";
-import Client from '../../../src/models/Client'
-import Booking from "../../../src/models/Booking";
-import Order from "../../../src/models/Order";
+import {afterAll, beforeAll, beforeEach, describe, it} from "@jest/globals"
+import {closeConnection, initDatabase} from "../../../src/loaders/database"
+import Client, {IClient} from '../../../src/models/Client'
+import Booking from "../../../src/models/Booking"
+import Order from "../../../src/models/Order"
 
 const clientObj = {
     surname: "Adrien",
@@ -42,17 +42,17 @@ describe('Client Model tests', ()=> {
             .findById(expected._id)
             .populate('bookings')
             .populate('orders')
-            .lean()
+            .lean() as IClient
 
         expect(result).not.toBeNull()
         expect(result._id).toStrictEqual(expected._id)
         expect(result.name).toEqual(expected.name)
         expect(result.surname).toEqual(expected.surname)
         expect(result.email).toEqual(expected.email)
-        expect(result.pwd).toEqual(expected.pwd)
+        expect(result.password).toEqual(expected.password)
         expect(result.loyaltyPoint).toBe(0) // default value for loyalty points
         expect(result.orders.map(b => b._id)).toEqual([order._id])
         expect(result.bookings.map(b => b._id)).toEqual([booking._id])
-        done()
+        done!()
     }, 6000)
 })

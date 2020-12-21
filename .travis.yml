@@ -1,0 +1,22 @@
+language: node_js
+node_js: node
+cache:
+  yarn: true
+  directories:
+    - 'common/node_modules'
+    - 'frontend/node_modules'
+    - 'server/node_modules'
+    - 'node_modules'
+    - 'common/dist'
+
+services:
+  - mongodb
+
+env:
+  global:
+    - SKIP_PREFLIGHT_CHECK=true # allow react script to use lerna's jest version
+    - REACT_APP_BACKEND_URL=http://localhost:8000
+
+deploy:
+  provider: heroku
+  edge: true # opt in to dpl v2

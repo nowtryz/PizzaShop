@@ -38,6 +38,6 @@ describe('Booking Model tests', ()=> {
         expect(result.date).toEqual(expected.date)
         expect(result.peopleCount).toBe(expected.peopleCount)
 
-        done()
+        done!()
     }, 6000)
 })

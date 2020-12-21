@@ -1,4 +1,4 @@
-import {ApiClient} from "pizza-shop-commons/api"
+import {ApiClient} from "@pizza-shop/common"
 
 export const LOADING_USER = "loading_user"
 export const STOP_LOADING_USER = "stop_loading_user"

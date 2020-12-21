@@ -1,9 +1,10 @@
 <!-- PROJECT SHIELDS -->
 [![lerna][lerma-shield]](https://lerna.js.org)
+[![Codacy Badge][codacy-shield]][codacy-url]
+[![Build Status][travis-shield]][travis-url]
+[![Heroku App Status][heroku-shield]][heroku-url]
 [![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
 
@@ -40,6 +41,7 @@ This is a school project made at Polytech Annecy-Chambéry as part of the FullSt
 ### Built With
 
 * [Express](https://expressjs.com/)
+* [Lerna](https://lerna.js.org)
 * [TypeScript](https://www.typescriptlang.org/)
 * [Jest](https://jestjs.io/)
 
@@ -53,7 +55,7 @@ To get a local copy up and running follow these simple steps.
 
 The following softwares are needed to run the projet
 - Node 12
-- npm or yarn
+- yarn (npm may cause issues)
 - MongoDB
 
 ### Installation
@@ -62,23 +64,24 @@ The following softwares are needed to run the projet
 ```sh
 git clone https://github.com/nowtryz/PizzaShop.git
 ```
-2. Install NPM packages
+2. Install packages
 ```sh
-npm install
+yarn            # downloads dependencies for the root project
+yarn bootstrap  # links packages with common
 ```
+3. Update `.env` files with your values
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-- Update the `.env` file at the root of the project with your values
 - Run the project
 ```shell script
-npm run dev:start
+yarn dev:start
 ```
 - Or build the prod version
 ```shell script
-npm run build
-npm start
+yarn build
+yarn start
 ```
 
 
@@ -117,14 +120,16 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/nowtryz/PizzaShop.svg
+[contributors-shield]: https://img.shields.io/github/contributors/nowtryz/PizzaShop.svg?style=for-the-badge
 [contributors-url]: https://github.com/nowtryz/PizzaShop/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/nowtryz/PizzaShop.svg
-[forks-url]: https://github.com/nowtryz/PizzaShop/network/members
-[stars-shield]: https://img.shields.io/github/stars/nowtryz/PizzaShop.svg
+[stars-shield]: https://img.shields.io/github/stars/nowtryz/PizzaShop.svg?style=for-the-badge&label=⭐%20stars
 [stars-url]: https://github.com/nowtryz/PizzaShop/stargazers
-[issues-shield]: https://img.shields.io/github/issues/nowtryz/PizzaShop.svg
-[issues-url]: https://github.com/nowtryz/PizzaShop/issues
-[license-shield]: https://img.shields.io/github/license/nowtryz/PizzaShop.svg
+[license-shield]: https://img.shields.io/github/license/nowtryz/PizzaShop.svg?style=for-the-badge
 [license-url]: https://github.com/nowtryz/PizzaShop/blob/master/LICENSE.txt
-[lerma-shield]: https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg
+[lerma-shield]: https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=for-the-badge
+[travis-shield]: https://img.shields.io/travis/nowtryz/PizzaShop?logo=travis&style=for-the-badge
+[travis-url]: https://travis-ci.org/nowtryz/PizzaShop
+[heroku-shield]: http://heroku-shields.herokuapp.com/mamapizza??style=for-the-badge&logo=heroku
+[heroku-url]: https://mamapizza.herokuapp.com
+[codacy-shield]: https://img.shields.io/codacy/grade/54d5b64bec0e483f9e20e1a2b49e674d?logo=codacy&style=for-the-badge
+[codacy-url]: https://www.codacy.com/gh/nowtryz/PizzaShop/dashboard

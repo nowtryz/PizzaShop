@@ -62,7 +62,7 @@ const ButtonAppBar = ({orderRef}: ButtonAppBarProps) =>  {
     const openCart = () => dispatch(openOrder())
     const BookingOpen = () => dispatch(openBooking())
     const gotToMenu = () => orderRef.current?.scrollIntoView()
-    const onTitleClick: MouseEventHandler<HTMLAnchorElement> = event => {
+    const onTitleClick: MouseEventHandler<HTMLButtonElement> = event => {
         event.preventDefault()
         window.scrollTo(0,0)
     }
@@ -71,7 +71,7 @@ const ButtonAppBar = ({orderRef}: ButtonAppBarProps) =>  {
         <AppBar position="fixed" color="default" classes={{root:cx(classes.root, {[classes.scrolled]: trigger})}}>
             <Toolbar>
                 <Typography variant="h5" className={cx(classes.title, {[classes.titleScrolled]: !trigger})}>
-                    <a onClick={onTitleClick} href="#" className={classes.titleLink}>Mama Pizza</a>
+                    <button onClick={onTitleClick} className={classes.titleLink}>Mama Pizza</button>
                 </Typography>
                 <Button className={classes.menuButton} onClick={BookingOpen}>Réserver</Button>
                 <Button className={classes.menuButton} onClick={openCart}>Commander</Button>

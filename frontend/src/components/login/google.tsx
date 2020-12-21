@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import openSignInWindow from "../../utils/pop-up";
 import {signIn, startLoadingUser, stopLoadingUser} from "../../store/user/actions";
 import axios from "../../api/axios";
-import {ApiLogin} from "pizza-shop-commons/api";
+import {ApiLogin} from "@pizza-shop/common";
 
 const GoogleLogin = () => {
     const dispatch = useDispatch()

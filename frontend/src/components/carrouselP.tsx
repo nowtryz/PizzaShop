@@ -1,10 +1,7 @@
 import React from 'react';
-import { Theme, makeStyles, createStyles } from '@material-ui/core/styles';
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
-import {RootState} from "../store";
-import {openOrder} from "../store/actions";
-import {useDispatch, useSelector} from "react-redux";
 
 const images = [
     {
@@ -104,13 +101,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function ButtonBasesP() {
-    const classes = useStyles();
-    const productsCount = useSelector<RootState, number>(state => state.order.length)
-    const dispatch = useDispatch()
-
-    const onCartClick = () => {
-        dispatch(openOrder())
-    }
+    const classes = useStyles()
 
     return (
         <div className={classes.root}>

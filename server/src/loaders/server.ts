@@ -10,15 +10,19 @@ import logger from "./logger"
 import session from 'express-session'
 import connectMongo from 'connect-mongo'
 import {connection} from 'mongoose'
-import {httpServer} from "./config"
+import {httpServer, production} from "./config"
 import passport from './passport'
 import compression from 'compression'
+import path from "path";
 
 const MongoStore = connectMongo(session)
 
 
 
-export default express()
+const app = express()
+
+// Serve react files on production environments
+    .use(express.static('../frontend/build'))
 
 // set the view engine to ejs
     .set('view engine', 'ejs')
@@ -62,3 +66,6 @@ export default express()
             msg:'Unavailable address'
         });
     })
+
+
+export default app

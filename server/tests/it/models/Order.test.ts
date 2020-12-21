@@ -46,11 +46,11 @@ describe('Order Model tests', ()=> {
 
         expect(result._id).toStrictEqual(expected._id)
         expect(result.taken).toEqual(expected.taken)
-        expect(result.estimation).toBe(expected.estimation)
-        expect(result.client).toBe(expected.client)
+        expect(result.estimation).toStrictEqual(expected.estimation)
+        expect(result.client).toStrictEqual(expected.client)
         // TODO fix test for products
         // expect(result.products).toMatch(expected.products)
 
-        done()
+        done!()
     }, 6000)
 })
