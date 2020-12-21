@@ -30,7 +30,7 @@ const defaultState: UserState = {
 }
 
 
-const userReducers = (userState = defaultState, action: UserActionTypes):UserState => {
+const userReducers = (userState: UserState = defaultState, action: UserActionTypes): UserState => {
     switch (action.type) {
         case LOADING_USER:
             return {

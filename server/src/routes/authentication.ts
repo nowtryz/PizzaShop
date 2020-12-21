@@ -4,7 +4,7 @@ import passport from "passport";
 
 export default Router()
     .post('/signup', signup)
-    .post('/sign-in', passport.authenticate(['basic', 'jwt'], {session: false}), signIn)
+    .post('/sign-in', passport.authenticate(['basic', 'jwt']), signIn)
     .post('/sign-out', signOut)
     .get('/profile', profile)
 

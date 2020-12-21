@@ -1,71 +1,28 @@
-import React, {useRef} from 'react'
+import React, {useState} from 'react'
 import {useDispatch, useSelector} from "react-redux"
-import {RootState} from "../../store"
-import {closeOrder, emptyCart} from "../../store/actions"
 import {
-    Accordion as MuiAccordion,
-    AccordionDetails as MuiAccordionDetails,
-    AccordionSummary as MuiAccordionSummary,
-    Button,
+    Button, CircularProgress,
     createStyles,
     Dialog,
     DialogActions,
     DialogContent,
     DialogTitle,
-    Grid,
+    Fade,
     IconButton,
-    Typography,
-    withStyles
+    Step,
+    StepLabel,
+    Stepper,
+    Typography
 } from "@material-ui/core"
-import {Close, ExpandMore} from "@material-ui/icons"
+import {Close} from "@material-ui/icons"
 import {makeStyles} from "@material-ui/core/styles"
-import Sidebar from "./siderbar"
-import PizzaList from "./pizza-list"
 import {ApiProduct} from "pizza-shop-commons/api"
-import Scrollbar from 'react-perfect-scrollbar'
+import {RootState} from "../../store"
+import {closeOrder, emptyCart} from "../../store/actions"
+import Cart from './cart'
+import User from "./user";
+import axios from "../../api/axios";
 
-
-const Accordion = withStyles({
-    root: {
-        border: 'none',
-        borderTop: '1px solid rgba(0, 0, 0, .125)',
-        boxShadow: 'none',
-        '&:not(:last-child)': {
-            borderBottom: 0,
-        },
-        '&:before': {
-            display: 'none',
-        },
-        '&$expanded': {
-            margin: 'auto',
-        },
-    },
-    expanded: {},
-})(MuiAccordion)
-
-const AccordionSummary = withStyles({
-    root: {
-        backgroundColor: 'rgba(0, 0, 0, .03)',
-        borderBottom: '1px solid rgba(0, 0, 0, .125)',
-        marginBottom: -1,
-        minHeight: 56,
-        '&$expanded': {
-            minHeight: 56,
-        },
-    },
-    content: {
-        '&$expanded': {
-            margin: '12px 0',
-        },
-    },
-    expanded: {},
-})(MuiAccordionSummary)
-
-const AccordionDetails = withStyles((theme) => ({
-    root: {
-        padding: theme.spacing(2),
-    },
-}))(MuiAccordionDetails)
 
 const useStyle = makeStyles(theme => createStyles({
     title: {
@@ -78,20 +35,22 @@ const useStyle = makeStyles(theme => createStyles({
         top: theme.spacing(1),
         color: theme.palette.grey[500],
     },
-    sidebar: {
-        borderRight: `${theme.palette.divider} solid 1px`,
-    },
     container: {
         padding: 0,
     },
-    orderPane: {
-        maxHeight: '600px',
-    }
 }))
 
+const steps = [
+    'Valider le panier',
+    'Authentification',
+    'Envoyer',
+]
+
 const OrderDialog = () => {
-    const open = useSelector<RootState,boolean>(state=>state.dialog.order)
+    const open = useSelector<RootState,boolean>(state => state.dialog.order)
+    const isUserLogged = useSelector<RootState, boolean>(state => state.user.logged)
     const products = useSelector<RootState,ApiProduct[]>(state => state.order)
+    const [step, setStep] = useState(0)
     const dispatch = useDispatch()
     const classes = useStyle()
 
@@ -99,14 +58,37 @@ const OrderDialog = () => {
 
     const handleClose = () => {
         dispatch(closeOrder())
+        setStep(0)
     }
 
     const emptyCartAndClose = () => {
         dispatch(closeOrder())
         dispatch(emptyCart())
+        setStep(0)
     }
 
-    // @ts-ignore
+    const sendOrder = async (products: ApiProduct[]) => {
+        try {
+            const result = await axios.post('orders/create', products)
+        } catch (err) {
+            console.error(err)
+        }
+
+        emptyCartAndClose()
+    }
+
+    const handleNext = () => {
+        if (step == 2) sendOrder(products).then()
+        setStep(step + 1)
+    }
+
+    const isNextDisabled = (step: number) => {
+        if (step === 0) return isCartEmpty
+        if (step === 1) return !isUserLogged
+        return step === 3;
+
+    }
+
     // @ts-ignore
     return (
         <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth="md">
@@ -117,49 +99,32 @@ const OrderDialog = () => {
                 </IconButton>
             </DialogTitle>
             <DialogContent dividers classes={{root: classes.container}}>
-                <Grid container>
-                    <Grid item xs={4} classes={{item: classes.sidebar}}>
-                        <Sidebar/>
-                    </Grid>
-                    <Grid item xs={8} classes={{root: classes.orderPane}}>
-                        <Scrollbar>
-                            <Accordion square defaultExpanded>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMore />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                >
-                                    <Typography>Pizzas</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <PizzaList/>
-                                </AccordionDetails>
-                            </Accordion>
-                            <Accordion square>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMore />}
-                                    aria-controls="panel2a-content"
-                                    id="panel2a-header"
-                                >
-                                    <Typography>Accordion 2</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                                        sit amet blandit leo lobortis eget.
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                        </Scrollbar>
-                    </Grid>
-                </Grid>
+                <Stepper activeStep={step}>
+                    {steps.map((v,i) => (
+                        <Step completed={i < step}>
+                            <StepLabel>{v}</StepLabel>
+                        </Step>
+                    ))}
+                </Stepper>
+                <Fade in={step === 0} timeout={{appear: 200, enter: 0, exit: 200}} mountOnEnter unmountOnExit>
+                    <Cart />
+                </Fade>
+                <Fade in={step === 1} timeout={{appear: 200, enter: 200, exit: 200}} mountOnEnter unmountOnExit>
+                    <User />
+                </Fade>
+                <Fade in={step === 2} timeout={{appear: 200, enter: 200, exit: 200}} mountOnEnter unmountOnExit>
+                    <Typography>Validez votre commande</Typography>
+                </Fade>
+                <Fade in={step === 3} timeout={{appear: 200, enter: 200, exit: 200}} mountOnEnter unmountOnExit>
+                    <CircularProgress />
+                </Fade>
             </DialogContent>
             <DialogActions>
                 <Button onClick={emptyCartAndClose} disabled={isCartEmpty} color="primary">
                     Vider le panier
                 </Button>
-                <Button autoFocus disabled={isCartEmpty} color="primary">
-                    Suivant
+                <Button autoFocus disabled={isNextDisabled(step)} color="primary" onClick={handleNext}>
+                    {step < 2 ? 'Continuer' : 'Valider'}
                 </Button>
             </DialogActions>
         </Dialog>

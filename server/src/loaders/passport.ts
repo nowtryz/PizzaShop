@@ -12,13 +12,9 @@ passport.use(new BasicStrategy(
     async (email, password, done) => {
         try {
             const user = await Client.findOne({email}).select('+password')
-            console.log(user)
 
-            if (user && user.comparePassword(password)) {
-                done(null, user)
-            } else {
-                done(null, false)
-            }
+            if (user && user.comparePassword(password)) done(null, user)
+            else done(null, false)
         } catch (err) {
             return done(err, false)
         }

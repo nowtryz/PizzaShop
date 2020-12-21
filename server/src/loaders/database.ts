@@ -8,6 +8,7 @@ export const initDatabase = async (options={}) => {
 
     if (db.verbose) {
         mongoose.set('debug', true)
+        logger.info('MongoDB verbose mode enabled')
     }
 
     // As from https://stackoverflow.com/questions/51960171/node63208-deprecationwarning-collection-ensureindex-is-deprecated-use-creat

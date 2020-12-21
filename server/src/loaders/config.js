@@ -13,7 +13,7 @@ export const db = {
     ip: process.env.MONGO_HOST,
     port: parseInt(process.env.MONGO_PORT, 10),
     name: process.env.MONGO_DB,
-    verbose: !!process.env.MONGO_VERBOSE,
+    verbose: parseInt(process.env.MONGO_VERBOSE) > 0 || (process.env.MONGO_VERBOSE || '').toLowerCase() === 'true',
 }
 db.uri = `mongodb://${db.ip}:${db.port}/${db.name}`
 
