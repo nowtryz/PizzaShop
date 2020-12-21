@@ -125,7 +125,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 [stars-shield]: https://img.shields.io/github/stars/nowtryz/PizzaShop.svg?style=for-the-badge&label=⭐%20stars
 [stars-url]: https://github.com/nowtryz/PizzaShop/stargazers
 [license-shield]: https://img.shields.io/github/license/nowtryz/PizzaShop.svg?style=for-the-badge
-[license-url]: https://github.com/nowtryz/PizzaShop/blob/master/LICENSE.txt
+[license-url]: https://github.com/nowtryz/PizzaShop/blob/master/LICENSE.md
 [lerma-shield]: https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=for-the-badge
 [travis-shield]: https://img.shields.io/travis/nowtryz/PizzaShop?logo=travis&style=for-the-badge
 [travis-url]: https://travis-ci.org/nowtryz/PizzaShop

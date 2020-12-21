@@ -3,7 +3,6 @@ import {createMuiTheme, MuiThemeProvider} from "@material-ui/core/styles";
 import ButtonBasesP from "./components/carrouselP";
 import ImageBases from "./components/image";
 import ButtonAppBar from "./components/appBar";
-import PizzaForm from "./components/pizza-form";
 import PizzaList from "./components/home-pizza-list";
 import OrderDialog from "./components/order-dialog";
 import BookingDialog from './components/booking-dialog';
@@ -39,7 +38,6 @@ const App = () => {
                     </div>
                     <ButtonBasesP/>
                     <PizzaList ref={order} />
-                    <PizzaForm />
                 </header>
             </div>
             <OrderDialog />

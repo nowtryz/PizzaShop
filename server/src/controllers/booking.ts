@@ -43,6 +43,6 @@ export const editBooking : RequestHandler<{id: string}, IBooking, IBooking> = as
 }
 
 export const deleteBooking : RequestHandler<{id: string}, null, null>= async (req,res) =>{
-    Booking.findByIdAndDelete(req.params.id)
+    await Booking.findByIdAndDelete(req.params.id)
     res.status(StatusCodes.NO_CONTENT).end()
 }

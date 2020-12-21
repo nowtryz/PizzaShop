@@ -39,7 +39,7 @@
   "scripts": {
     "postinstall": "lerna bootstrap",
     "start": "lerna run --stream --no-prefix --scope @pizza-shop/server start",
-    "dev:start": "lerna run --parallel start",
+    "dev:start": "lerna run --parallel dev:start",
     "bootstrap": "lerna bootstrap",
     "build": "lerna run --stream build",
     "test": "lerna run test",

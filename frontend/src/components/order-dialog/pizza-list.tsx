@@ -34,6 +34,7 @@ const PizzaList = () => {
                         ingredients={pizza.ingredients}
                         price={pizza.price}
                         onOrder={order(pizza)}
+                        img={pizza.image}
                         buttonText="Ajouter au panier"
                         classes={{root: classes.pizza}}
                     />

@@ -8,6 +8,7 @@
       "esnext"
     ],
     "outDir": "build",
+    "extendedDiagnostics": false,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,

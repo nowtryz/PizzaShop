@@ -44,6 +44,6 @@ export const editPizza : RequestHandler<{id: string}, IPizza, IPizza> = async (r
 }
 
 export const deletePizza : RequestHandler<{id: string}, null, null> = async (req, res) => {
-    Pizza.findByIdAndDelete(req.params.id)
+    await Pizza.findByIdAndDelete(req.params.id)
     res.status(StatusCodes.NO_CONTENT).end()
 }

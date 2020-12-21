@@ -66,9 +66,9 @@ export const readClientOrders : RequestHandler<{id:string}, Array<IOrder>, null>
 }
 
 export const readClientBooking : RequestHandler<{id:string}, Array<IBooking>, null> = async (req,res)=>{
-    const bookins = await Booking.find({
+    const bookings = await Booking.find({
         client: req.params.id
     }).select('-client')
 
-    res.status(StatusCodes.OK).json(bookins)
+    res.status(StatusCodes.OK).json(bookings)
 }

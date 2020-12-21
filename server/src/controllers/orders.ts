@@ -58,6 +58,6 @@ export const editOrder : RequestHandler<{id: string}, IOrder, IOrder> = async (r
 }
 
 export const deleteOrder : RequestHandler<{id: string}, null, null> = async (req, res) => {
-    Order.findByIdAndDelete(req.params.id)
+    await Order.findByIdAndDelete(req.params.id)
     res.status(StatusCodes.NO_CONTENT).end()
 }

@@ -45,6 +45,6 @@ export const editCategory : RequestHandler<{id: string}, ICategory | null, Categ
 }
 
 export const deleteCategory : RequestHandler<{id: string}, null, null> = async (req, res) => {
-    Category.findByIdAndDelete(req.params.id)
+    await Category.findByIdAndDelete(req.params.id)
     res.status(StatusCodes.NO_CONTENT).end()
 }
